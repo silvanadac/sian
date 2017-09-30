@@ -75,7 +75,6 @@ class ci_abm_personas extends SIAN_sg_ci
 	{
 		$datos = $this->cn()->get_domicilio();
 		$form_ml->set_datos($datos);
-		//un ejemplo;
 	}
 	//-----------------------------------------------------------------------------------
 	//---- form_cuenta -------------------------------------------------------------------
