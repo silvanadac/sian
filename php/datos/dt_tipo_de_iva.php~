@@ -1,0 +1,12 @@
+<?php
+class dt_tipo_de_iva extends toba_datos_tabla
+{
+	function get_nombre()
+	{
+		$sql = "SELECT id_iva, nombre FROM tipo_de_iva ORDER BY nombre";
+		return toba::db('SIAN_sg')->consultar($sql);
+
+
+		// $sql = "SELECT id_tipodoc, descripcion FROM tipo_de_doc ORDER BY descripcion";
+		// return toba::db('SIAN_sg')->consultar($sql);
+	}

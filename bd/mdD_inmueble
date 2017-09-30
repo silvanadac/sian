@@ -1,0 +1,1179 @@
+CREATE TABLE public.tipo_de_cuenta (
+                id_tipo_cuenta BIGINT NOT NULL,
+                nombre_cuenta VARCHAR(20) NOT NULL,
+                CONSTRAINT tipo_de_cuenta_pk PRIMARY KEY (id_tipo_cuenta)
+);
+
+
+CREATE INDEX tipo_de_cuenta_idx
+ ON public.tipo_de_cuenta
+ ( nombre_cuenta );
+
+ CREATE UNIQUE INDEX cuenta_idx
+  ON public.cuenta
+  ( cbu );
+
+CREATE SEQUENCE public.fotos_id_foto_seq;
+
+CREATE TABLE public.fotos (
+                id_foto BIGINT NOT NULL DEFAULT nextval('public.fotos_id_foto_seq'),
+                foto BYTEA NOT NULL,
+                id_propiedad BIGINT NOT NULL,
+                CONSTRAINT fotos_pk PRIMARY KEY (id_foto)
+);
+
+CREATE TABLE public.domicilio_x_propiedad (
+                id_domicilio BIGINT NOT NULL,
+                id_propiedad BIGINT NOT NULL,
+                CONSTRAINT domicilio_x_propiedad_pk PRIMARY KEY (id_domicilio, id_propiedad)
+);
+
+CREATE TABLE public.domicilio_x_persona (
+                id_domicilio BIGINT NOT NULL,
+                id_persona BIGINT NOT NULL,
+                CONSTRAINT domicilio_x_persona_pk PRIMARY KEY (id_domicilio, id_persona)
+);
+
+ALTER TABLE public.domicilio_x_persona ADD CONSTRAINT domicilio_domicilio_x_persona_fk
+FOREIGN KEY (id_domicilio)
+REFERENCES public.domicilio (id_domicilio)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.domicilio_x_propiedad ADD CONSTRAINT domicilio_domicilio_x_propiedad_fk
+FOREIGN KEY (id_domicilio)
+REFERENCES public.domicilio (id_domicilio)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+
+CREATE TABLE public.servicios_x_propiedad (
+                id_propiedad BIGINT NOT NULL,
+                id_servicio BIGINT NOT NULL,
+                CONSTRAINT servicios_x_propiedad_pk PRIMARY KEY (id_propiedad, id_servicio)
+);
+
+ALTER TABLE public.servicios_x_propiedad ADD CONSTRAINT servicios_servicios_x_propiedad_fk
+FOREIGN KEY (id_servicio)
+REFERENCES public.servicios (id_servicio)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+CREATE UNIQUE INDEX persona_idx
+ ON public.persona
+ ( cuit_cuil, nro_doc );
+
+CREATE SEQUENCE public.cuenta_id_cuenta_seq;
+
+CREATE TABLE public.cuenta (
+                id_cuenta BIGINT NOT NULL DEFAULT nextval('public.cuenta_id_cuenta_seq'),
+                cbu INTEGER NOT NULL,
+                id_tipo_cuenta BIGINT NOT NULL,
+                id_persona BIGINT NOT NULL,
+                id_empresa_com BIGINT NOT NULL,
+                CONSTRAINT cuenta_pk PRIMARY KEY (id_cuenta)
+);
+
+
+ALTER SEQUENCE public.cuenta_id_cuenta_seq OWNED BY public.cuenta.id_cuenta;
+CREATE SEQUENCE public.tipo_de_cuenta_id_tipo_cuenta_seq;
+
+CREATE TABLE public.tipo_de_cuenta (
+                id_tipo_cuenta BIGINT NOT NULL DEFAULT nextval('public.tipo_de_cuenta_id_tipo_cuenta_seq'),
+                nombre_cuenta VARCHAR(30) NOT NULL,
+                CONSTRAINT tipo_de_cuenta_pk PRIMARY KEY (id_tipo_cuenta)
+);
+
+
+ALTER SEQUENCE public.tipo_de_cuenta_id_tipo_cuenta_seq_1 OWNED BY public.tipo_de_cuenta.id_tipo_cuenta;
+
+CREATE SEQUENCE public.periodos_idperiodo_seq;
+
+CREATE TABLE public.periodos (
+                idperiodo INTEGER NOT NULL DEFAULT nextval('public.periodos_idperiodo_seq'),
+                nombreperiodo VARCHAR(10) NOT NULL,
+                CONSTRAINT periodos_pk PRIMARY KEY (idperiodo)
+);
+
+
+ALTER SEQUENCE public.periodos_idperiodo_seq OWNED BY public.periodos.idperiodo;
+
+CREATE UNIQUE INDEX periodos_idx
+ ON public.periodos
+ ( nombreperiodo );
+
+CREATE SEQUENCE public.comodidades_id_comodidad_seq;
+
+CREATE TABLE public.comodidades (
+                id_comodidad BIGINT NOT NULL DEFAULT nextval('public.comodidades_id_comodidad_seq'),
+                nombre VARCHAR(20) NOT NULL,
+                CONSTRAINT comodidades_pk PRIMARY KEY (id_comodidad)
+);
+
+
+ALTER SEQUENCE public.comodidades_id_comodidad_seq OWNED BY public.comodidades.id_comodidad;
+
+CREATE UNIQUE INDEX comodidades_idx
+ ON public.comodidades
+ ( nombre );
+
+CREATE SEQUENCE public.tipo_mascota_id_tipo_mascota_seq;
+
+CREATE TABLE public.tipo_mascota (
+                id_tipo_mascota BIGINT NOT NULL DEFAULT nextval('public.tipo_mascota_id_tipo_mascota_seq'),
+                nombre VARCHAR(10) NOT NULL,
+                CONSTRAINT tipo_mascota_pk PRIMARY KEY (id_tipo_mascota)
+);
+
+
+ALTER SEQUENCE public.tipo_mascota_id_tipo_mascota_seq OWNED BY public.tipo_mascota.id_tipo_mascota;
+
+CREATE UNIQUE INDEX tipo_mascota_idx
+ ON public.tipo_mascota
+ ( nombre );
+
+CREATE SEQUENCE public.tipos_de_estados_id_estado_seq;
+
+CREATE TABLE public.tipos_de_estados (
+                id_estado BIGINT NOT NULL DEFAULT nextval('public.tipos_de_estados_id_estado_seq'),
+                nombre_tipo_estado VARCHAR(10) NOT NULL,
+                CONSTRAINT tipos_de_estados_pk PRIMARY KEY (id_estado)
+);
+
+
+ALTER SEQUENCE public.tipos_de_estados_id_estado_seq OWNED BY public.tipos_de_estados.id_estado;
+
+CREATE SEQUENCE public.egresos_id_egreso_seq;
+
+CREATE TABLE public.egresos (
+                id_egreso BIGINT NOT NULL DEFAULT nextval('public.egresos_id_egreso_seq'),
+                nombre_egreso VARCHAR(20) NOT NULL,
+                fecha DATE NOT NULL,
+                CONSTRAINT egresos_pk PRIMARY KEY (id_egreso)
+);
+
+
+ALTER SEQUENCE public.egresos_id_egreso_seq OWNED BY public.egresos.id_egreso;
+
+CREATE TABLE public.detalle_egreso (
+                id_egreso BIGINT NOT NULL,
+                monto REAL NOT NULL,
+                CONSTRAINT detalle_egreso_pk PRIMARY KEY (id_egreso)
+);
+
+
+CREATE SEQUENCE public.empresa_com_id_empresa_com_seq;
+
+CREATE TABLE public.empresa_com (
+                id_empresa_com BIGINT NOT NULL DEFAULT nextval('public.empresa_com_id_empresa_com_seq'),
+                nombre VARCHAR(50) NOT NULL,
+                CONSTRAINT empresa_com_pk PRIMARY KEY (id_empresa_com)
+);
+
+
+ALTER SEQUENCE public.empresa_com_id_empresa_com_seq OWNED BY public.empresa_com.id_empresa_com;
+
+CREATE UNIQUE INDEX empresa_com_idx
+ ON public.empresa_com
+ ( nombre );
+
+CREATE SEQUENCE public.tipo_telefono_id_tipo_tel_seq;
+
+CREATE TABLE public.tipo_telefono (
+                id_tipo_tel BIGINT NOT NULL DEFAULT nextval('public.tipo_telefono_id_tipo_tel_seq'),
+                nombre VARCHAR(15) NOT NULL,
+                CONSTRAINT tipo_telefono_pk PRIMARY KEY (id_tipo_tel)
+);
+
+
+ALTER SEQUENCE public.tipo_telefono_id_tipo_tel_seq OWNED BY public.tipo_telefono.id_tipo_tel;
+
+CREATE UNIQUE INDEX tipo_telefono_idx
+ ON public.tipo_telefono
+ ( nombre );
+
+CREATE SEQUENCE public.tipo_autorizacion_id_tipo_autorizacion_seq;
+
+CREATE TABLE public.tipo_autorizacion (
+                id_tipo_autorizacion BIGINT NOT NULL DEFAULT nextval('public.tipo_autorizacion_id_tipo_autorizacion_seq'),
+                nombre_tipo_aut VARCHAR(10) NOT NULL,
+                siglas VARCHAR(3) NOT NULL,
+                CONSTRAINT tipo_autorizacion_pk PRIMARY KEY (id_tipo_autorizacion)
+);
+
+
+ALTER SEQUENCE public.tipo_autorizacion_id_tipo_autorizacion_seq OWNED BY public.tipo_autorizacion.id_tipo_autorizacion;
+
+CREATE UNIQUE INDEX tipo_autorizacion_idx
+ ON public.tipo_autorizacion
+ ( nombre_tipo_aut, siglas );
+
+CREATE SEQUENCE public.otros_id_otro_seq;
+
+CREATE TABLE public.otros (
+                id_otro BIGINT NOT NULL DEFAULT nextval('public.otros_id_otro_seq'),
+                nombre_otro VARCHAR(30) NOT NULL,
+                CONSTRAINT otros_pk PRIMARY KEY (id_otro)
+);
+
+
+ALTER SEQUENCE public.otros_id_otro_seq OWNED BY public.otros.id_otro;
+
+CREATE SEQUENCE public.tipos_de_gastos_id_tipo_de_gastos_seq;
+
+CREATE TABLE public.tipos_de_gastos (
+                id_tipo_de_gastos BIGINT NOT NULL DEFAULT nextval('public.tipos_de_gastos_id_tipo_de_gastos_seq'),
+                nombre_gasto VARCHAR NOT NULL,
+                CONSTRAINT tipos_de_gastos_pk PRIMARY KEY (id_tipo_de_gastos)
+);
+
+
+ALTER SEQUENCE public.tipos_de_gastos_id_tipo_de_gastos_seq OWNED BY public.tipos_de_gastos.id_tipo_de_gastos;
+
+CREATE UNIQUE INDEX tipos_de_gastos_idx
+ ON public.tipos_de_gastos
+ ( nombre_gasto );
+
+CREATE SEQUENCE public.gastos_id_gastos_seq;
+
+CREATE TABLE public.gastos (
+                id_gastos BIGINT NOT NULL DEFAULT nextval('public.gastos_id_gastos_seq'),
+                fecha DATE NOT NULL,
+                CONSTRAINT gastos_pk PRIMARY KEY (id_gastos)
+);
+
+
+ALTER SEQUENCE public.gastos_id_gastos_seq OWNED BY public.gastos.id_gastos;
+
+CREATE TABLE public.detalle_gastos (
+                id_tipo_de_gastos BIGINT NOT NULL,
+                id_gastos BIGINT NOT NULL,
+                importe REAL NOT NULL,
+                CONSTRAINT detalle_gastos_pk PRIMARY KEY (id_tipo_de_gastos, id_gastos)
+);
+
+
+CREATE SEQUENCE public.tipo_de_doc_id_tipodoc_seq;
+
+CREATE TABLE public.tipo_de_doc (
+                id_tipodoc BIGINT NOT NULL DEFAULT nextval('public.tipo_de_doc_id_tipodoc_seq'),
+                siglas VARCHAR(5) NOT NULL,
+                descripcion VARCHAR(50) NOT NULL,
+                CONSTRAINT tipo_de_doc_pk PRIMARY KEY (id_tipodoc)
+);
+
+
+ALTER SEQUENCE public.tipo_de_doc_id_tipodoc_seq OWNED BY public.tipo_de_doc.id_tipodoc;
+
+CREATE UNIQUE INDEX tipo_de_doc_idx
+ ON public.tipo_de_doc
+ ( siglas, descripcion );
+
+CREATE SEQUENCE public.pais_id_pais_seq;
+
+CREATE TABLE public.pais (
+                id_pais BIGINT NOT NULL DEFAULT nextval('public.pais_id_pais_seq'),
+                nombre_pais VARCHAR(30) NOT NULL,
+                CONSTRAINT pais_pk PRIMARY KEY (id_pais)
+);
+
+
+ALTER SEQUENCE public.pais_id_pais_seq OWNED BY public.pais.id_pais;
+
+CREATE SEQUENCE public.provincia_id_provincia_seq;
+
+CREATE TABLE public.provincia (
+                id_provincia BIGINT NOT NULL DEFAULT nextval('public.provincia_id_provincia_seq'),
+                id_pais BIGINT NOT NULL,
+                nombre_provincia VARCHAR(30) NOT NULL,
+                CONSTRAINT provincia_pk PRIMARY KEY (id_provincia)
+);
+
+
+ALTER SEQUENCE public.provincia_id_provincia_seq OWNED BY public.provincia.id_provincia;
+
+CREATE TABLE public.ciudad (
+                id_ciudad INTEGER NOT NULL,
+                id_provincia BIGINT NOT NULL,
+                nombre_ciudad VARCHAR(30) NOT NULL,
+                CONSTRAINT ciudad_pk PRIMARY KEY (id_ciudad)
+);
+
+
+CREATE SEQUENCE public.tipo_de_recibos_id_tipo_de_recibo_seq;
+
+CREATE TABLE public.tipo_de_recibos (
+                id_tipo_de_recibo BIGINT NOT NULL DEFAULT nextval('public.tipo_de_recibos_id_tipo_de_recibo_seq'),
+                nombre_recibo VARCHAR NOT NULL,
+                CONSTRAINT tipo_de_recibos_pk PRIMARY KEY (id_tipo_de_recibo)
+);
+
+
+ALTER SEQUENCE public.tipo_de_recibos_id_tipo_de_recibo_seq OWNED BY public.tipo_de_recibos.id_tipo_de_recibo;
+
+CREATE UNIQUE INDEX tipo_de_recibos_idx
+ ON public.tipo_de_recibos
+ ( nombre_recibo );
+
+CREATE SEQUENCE public.tipo_de_contrato_id_tipo_de_contrato_seq;
+
+CREATE TABLE public.tipo_de_contrato (
+                id_tipo_de_contrato BIGINT NOT NULL DEFAULT nextval('public.tipo_de_contrato_id_tipo_de_contrato_seq'),
+                nombre_contrato VARCHAR(30) NOT NULL,
+                siglas VARCHAR(3) NOT NULL,
+                vigenciameses INTEGER NOT NULL,
+                CONSTRAINT tipo_de_contrato_pk PRIMARY KEY (id_tipo_de_contrato)
+);
+
+
+ALTER SEQUENCE public.tipo_de_contrato_id_tipo_de_contrato_seq OWNED BY public.tipo_de_contrato.id_tipo_de_contrato;
+
+CREATE UNIQUE INDEX tipo_de_contrato_idx
+ ON public.tipo_de_contrato
+ ( nombre_contrato, siglas );
+
+CREATE SEQUENCE public.composicion_ambiental_id_comp_amb_seq;
+
+CREATE TABLE public.composicion_ambiental (
+                id_comp_amb BIGINT NOT NULL DEFAULT nextval('public.composicion_ambiental_id_comp_amb_seq'),
+                nombre VARCHAR(20) NOT NULL,
+                CONSTRAINT composicion_ambiental_pk PRIMARY KEY (id_comp_amb)
+);
+
+
+ALTER SEQUENCE public.composicion_ambiental_id_comp_amb_seq OWNED BY public.composicion_ambiental.id_comp_amb;
+
+CREATE UNIQUE INDEX composicion_ambiental_idx
+ ON public.composicion_ambiental
+ ( nombre );
+
+CREATE SEQUENCE public.empresa_telefono_id_linea_seq;
+
+CREATE TABLE public.empresa_telefono (
+                id_emp_tel BIGINT NOT NULL DEFAULT nextval('public.empresa_telefono_id_linea_seq'),
+                nombre_linea VARCHAR(12) NOT NULL,
+                CONSTRAINT empresa_telefono_pk PRIMARY KEY (id_emp_tel)
+);
+
+
+ALTER SEQUENCE public.empresa_telefono_id_linea_seq OWNED BY public.empresa_telefono.id_emp_tel;
+
+CREATE UNIQUE INDEX empresa_telefono_idx
+ ON public.empresa_telefono
+ ( nombre_linea );
+
+CREATE SEQUENCE public.tipo_de_iva_id_iva_seq;
+
+CREATE TABLE public.tipo_de_iva (
+                id_iva BIGINT NOT NULL DEFAULT nextval('public.tipo_de_iva_id_iva_seq'),
+                nombre VARCHAR(20) NOT NULL,
+                CONSTRAINT tipo_de_iva_pk PRIMARY KEY (id_iva)
+);
+
+
+ALTER SEQUENCE public.tipo_de_iva_id_iva_seq OWNED BY public.tipo_de_iva.id_iva;
+
+CREATE UNIQUE INDEX tipo_de_iva_idx
+ ON public.tipo_de_iva
+ ( nombre );
+
+CREATE SEQUENCE public.datos_catastrales_id_datos_catastrales_seq;
+
+CREATE TABLE public.datos_catastrales (
+                id_datos_catastrales BIGINT NOT NULL DEFAULT nextval('public.datos_catastrales_id_datos_catastrales_seq'),
+                zona VARCHAR(20) NOT NULL,
+                seccion NUMERIC NOT NULL,
+                manzana VARCHAR(10) NOT NULL,
+                parcela VARCHAR NOT NULL,
+                frente NUMERIC NOT NULL,
+                superficie NUMERIC NOT NULL,
+                valuacion NUMERIC NOT NULL,
+                partida_inmobiliaria INTEGER NOT NULL,
+                CONSTRAINT datos_catastrales_pk PRIMARY KEY (id_datos_catastrales)
+);
+
+
+ALTER SEQUENCE public.datos_catastrales_id_datos_catastrales_seq OWNED BY public.datos_catastrales.id_datos_catastrales;
+
+CREATE SEQUENCE public.estado_civil_id_estado_civil_seq;
+
+CREATE TABLE public.estado_civil (
+                id_estado_civil BIGINT NOT NULL DEFAULT nextval('public.estado_civil_id_estado_civil_seq'),
+                nombre_estadocivil VARCHAR(15) NOT NULL,
+                CONSTRAINT estado_civil_pk PRIMARY KEY (id_estado_civil)
+);
+
+
+ALTER SEQUENCE public.estado_civil_id_estado_civil_seq OWNED BY public.estado_civil.id_estado_civil;
+
+CREATE UNIQUE INDEX estado_civil_idx
+ ON public.estado_civil
+ ( nombre_estadocivil );
+
+CREATE SEQUENCE public.tipo_de_pagos_id_pagos_seq;
+
+CREATE TABLE public.tipo_de_pagos (
+                id_tipo_pago BIGINT NOT NULL DEFAULT nextval('public.tipo_de_pagos_id_pagos_seq'),
+                nombre_pago VARCHAR NOT NULL,
+                nro_tarjeta BOOLEAN NOT NULL,
+                nro_cheque BOOLEAN NOT NULL,
+                nro_pagare BOOLEAN NOT NULL,
+                nombre_propietario BOOLEAN NOT NULL,
+                fecha_vencimiento BOOLEAN NOT NULL,
+                empresa_com BOOLEAN NOT NULL,
+                CONSTRAINT tipo_de_pagos_pk PRIMARY KEY (id_tipo_pago)
+);
+
+
+ALTER SEQUENCE public.tipo_de_pagos_id_pagos_seq OWNED BY public.tipo_de_pagos.id_tipo_pago;
+
+CREATE SEQUENCE public.pagos_id_pago_seq;
+
+CREATE TABLE public.pagos (
+                id_pago BIGINT NOT NULL DEFAULT nextval('public.pagos_id_pago_seq'),
+                monto REAL NOT NULL,
+                fecha_pago DATE NOT NULL,
+                CONSTRAINT pagos_pk PRIMARY KEY (id_pago)
+);
+
+
+ALTER SEQUENCE public.pagos_id_pago_seq OWNED BY public.pagos.id_pago;
+
+CREATE TABLE public.forma_de_pago (
+                id_tipo_pago BIGINT NOT NULL,
+                id_pago BIGINT NOT NULL,
+                monto VARCHAR NOT NULL,
+                nro_tarjeta INTEGER,
+                nro_cheque INTEGER,
+                nro_pagare INTEGER NOT NULL,
+                nombre_propietario VARCHAR(30),
+                fecha_vencimiento DATE,
+                id_empresa_com BIGINT NOT NULL,
+                CONSTRAINT forma_de_pago_pk PRIMARY KEY (id_tipo_pago, id_pago)
+);
+
+
+CREATE TABLE public.requisitos (
+                id_requisito BIGINT NOT NULL,
+                nombre_requisito VARCHAR(50) NOT NULL,
+                CONSTRAINT requisitos_pk PRIMARY KEY (id_requisito)
+);
+
+
+CREATE SEQUENCE public.barrio_id_barrio_seq;
+
+CREATE TABLE public.barrio (
+                id_barrio BIGINT NOT NULL DEFAULT nextval('public.barrio_id_barrio_seq'),
+                id_ciudad INTEGER NOT NULL,
+                nombre_barrio VARCHAR(20) NOT NULL,
+                CONSTRAINT barrio_pk PRIMARY KEY (id_barrio)
+);
+
+
+ALTER SEQUENCE public.barrio_id_barrio_seq OWNED BY public.barrio.id_barrio;
+
+CREATE SEQUENCE public.retricciones_id_restrccion_seq;
+
+CREATE TABLE public.retricciones (
+                id_restrccion BIGINT NOT NULL DEFAULT nextval('public.retricciones_id_restrccion_seq'),
+                nombre_restriccion VARCHAR(20) NOT NULL,
+                CONSTRAINT retricciones_pk PRIMARY KEY (id_restrccion)
+);
+
+
+ALTER SEQUENCE public.retricciones_id_restrccion_seq OWNED BY public.retricciones.id_restrccion;
+
+CREATE UNIQUE INDEX retricciones_idx
+ ON public.retricciones
+ ( nombre_restriccion );
+
+CREATE TABLE public.empresa (
+                cuit_empresa VARCHAR NOT NULL,
+                nombre VARCHAR NOT NULL,
+                email VARCHAR NOT NULL,
+                logo BYTEA NOT NULL,
+                CONSTRAINT empresa_pk PRIMARY KEY (cuit_empresa)
+);
+
+
+CREATE SEQUENCE public.servicio_id_servicio_seq;
+
+CREATE TABLE public.servicio (
+                id_servicio BIGINT NOT NULL DEFAULT nextval('public.servicio_id_servicio_seq'),
+                nombre_servicio VARCHAR(15) NOT NULL,
+                CONSTRAINT servicio_pk PRIMARY KEY (id_servicio)
+);
+
+
+ALTER SEQUENCE public.servicio_id_servicio_seq OWNED BY public.servicio.id_servicio;
+
+CREATE UNIQUE INDEX servicio_idx
+ ON public.servicio
+ ( nombre_servicio );
+
+CREATE SEQUENCE public.tipo_de_propiedad_id_tipo_propiedad_seq;
+
+CREATE TABLE public.tipo_de_propiedad (
+                id_tipo_propiedad BIGINT NOT NULL DEFAULT nextval('public.tipo_de_propiedad_id_tipo_propiedad_seq'),
+                nombre_tipopropiedad VARCHAR(30) NOT NULL,
+                CONSTRAINT tipo_de_propiedad_pk PRIMARY KEY (id_tipo_propiedad)
+);
+
+
+ALTER SEQUENCE public.tipo_de_propiedad_id_tipo_propiedad_seq OWNED BY public.tipo_de_propiedad.id_tipo_propiedad;
+
+CREATE UNIQUE INDEX tipo_de_propiedad_idx
+ ON public.tipo_de_propiedad
+ ( nombre_tipopropiedad );
+
+CREATE SEQUENCE public.rol_id_rol_seq;
+
+CREATE TABLE public.rol (
+                id_rol BIGINT NOT NULL DEFAULT nextval('public.rol_id_rol_seq'),
+                nombre_rol VARCHAR(15) NOT NULL,
+                CONSTRAINT rol_pk PRIMARY KEY (id_rol)
+);
+
+
+ALTER SEQUENCE public.rol_id_rol_seq OWNED BY public.rol.id_rol;
+
+CREATE UNIQUE INDEX rol_idx
+ ON public.rol
+ ( nombre_rol );
+
+CREATE SEQUENCE public.tipo_de_persona_id_tipo_persona_seq;
+
+CREATE TABLE public.tipo_de_persona (
+                id_tipo_persona BIGINT NOT NULL DEFAULT nextval('public.tipo_de_persona_id_tipo_persona_seq'),
+                descripcion VARCHAR(10) NOT NULL,
+                nombre BOOLEAN NOT NULL,
+                apellido BOOLEAN NOT NULL,
+                fecha_nacimiento BOOLEAN NOT NULL,
+                apoderado BOOLEAN NOT NULL,
+                razon_social BOOLEAN NOT NULL,
+                nacionalidad BOOLEAN NOT NULL,
+                hijos BOOLEAN NOT NULL,
+                cantidad_hijos BOOLEAN NOT NULL,
+                mascotas BOOLEAN NOT NULL,
+                tipo_mascota BOOLEAN NOT NULL,
+                vehiculos BOOLEAN NOT NULL,
+                estado_civil BOOLEAN NOT NULL,
+                CONSTRAINT tipo_de_persona_pk PRIMARY KEY (id_tipo_persona)
+);
+
+
+ALTER SEQUENCE public.tipo_de_persona_id_tipo_persona_seq OWNED BY public.tipo_de_persona.id_tipo_persona;
+
+CREATE UNIQUE INDEX tipo_de_persona_idx
+ ON public.tipo_de_persona
+ ( descripcion );
+
+CREATE INDEX tipo_de_persona_idx1
+ ON public.tipo_de_persona
+ ( descripcion );
+
+CREATE SEQUENCE public.persona_id_persona_seq;
+
+CREATE TABLE public.persona (
+                id_persona BIGINT NOT NULL DEFAULT nextval('public.persona_id_persona_seq'),
+                nombre VARCHAR(50),
+                apellidos VARCHAR(50),
+                apoderado VARCHAR(100) NOT NULL,
+                razon_social VARCHAR(50),
+                cuit_cuil VARCHAR(15) NOT NULL,
+                nro_doc VARCHAR(10) NOT NULL,
+                fecha_nacimiento DATE NOT NULL,
+                nacionalidad VARCHAR(20),
+                hijos BOOLEAN,
+                cantidad_hijos NUMERIC(2),
+                mascotas BOOLEAN,
+                vehiculos BOOLEAN,
+                id_iva BIGINT NOT NULL,
+                id_tipo_persona BIGINT NOT NULL,
+                id_estado_civil BIGINT,
+                id_tipodoc BIGINT NOT NULL,
+                CONSTRAINT persona_pk PRIMARY KEY (id_persona)
+);
+
+
+ALTER SEQUENCE public.persona_id_persona_seq OWNED BY public.persona.id_persona;
+
+CREATE SEQUENCE public.correo_id_correo_seq;
+
+CREATE TABLE public.correo (
+                id_correo BIGINT NOT NULL DEFAULT nextval('public.correo_id_correo_seq'),
+                descripcion VARCHAR(75) NOT NULL,
+                id_persona BIGINT NOT NULL,
+                CONSTRAINT correo_pk PRIMARY KEY (id_correo)
+);
+
+
+ALTER SEQUENCE public.correo_id_correo_seq OWNED BY public.correo.id_correo;
+
+CREATE UNIQUE INDEX correo_idx
+ ON public.correo
+ ( descripcion );
+
+CREATE TABLE public.persona_tipomascota (
+                id_persona BIGINT NOT NULL,
+                id_tipo_mascota BIGINT NOT NULL,
+                CONSTRAINT persona_tipomascota_pk PRIMARY KEY (id_persona, id_tipo_mascota)
+);
+
+
+CREATE TABLE public.requisitos_x_persona (
+                id_persona BIGINT NOT NULL,
+                id_requisito BIGINT NOT NULL,
+                CONSTRAINT requisitos_x_persona_pk PRIMARY KEY (id_persona, id_requisito)
+);
+
+
+CREATE SEQUENCE public.domicilio_id_domicilio_seq;
+
+CREATE TABLE public.domicilio (
+                id_domicilio BIGINT NOT NULL DEFAULT nextval('public.domicilio_id_domicilio_seq'),
+                barrio_id_barrio BIGINT NOT NULL,
+                calle VARCHAR(30) NOT NULL,
+                numero NUMERIC(4) NOT NULL,
+                CONSTRAINT domicilio_pk PRIMARY KEY (id_domicilio)
+);
+
+
+ALTER SEQUENCE public.domicilio_id_domicilio_seq OWNED BY public.domicilio.id_domicilio;
+
+CREATE TABLE public.roles (
+                id_rol BIGINT NOT NULL,
+                id_persona BIGINT NOT NULL,
+                CONSTRAINT roles_pk PRIMARY KEY (id_rol, id_persona)
+);
+
+
+CREATE SEQUENCE public.autorizaciones_id_autorizacion_seq;
+
+CREATE TABLE public.autorizaciones (
+                id_autorizacion BIGINT NOT NULL DEFAULT nextval('public.autorizaciones_id_autorizacion_seq'),
+                fecha_ini DATE NOT NULL,
+                fecha_vencimiento DATE NOT NULL,
+                id_tipo_autorizacion BIGINT NOT NULL,
+                id_rol BIGINT NOT NULL,
+                id_persona BIGINT NOT NULL,
+                CONSTRAINT autorizaciones_pk PRIMARY KEY (id_autorizacion)
+);
+
+
+ALTER SEQUENCE public.autorizaciones_id_autorizacion_seq OWNED BY public.autorizaciones.id_autorizacion;
+
+CREATE SEQUENCE public.propiedad_id_propiedad_seq;
+
+CREATE TABLE public.propiedad (
+                id_propiedad BIGINT NOT NULL DEFAULT nextval('public.propiedad_id_propiedad_seq'),
+                nombre VARCHAR(50) NOT NULL,
+                departamentos INTEGER NOT NULL,
+                imagen BYTEA,
+                id_tipo_propiedad BIGINT NOT NULL,
+                id_servicio BIGINT NOT NULL,
+                id_domicilio BIGINT NOT NULL,
+                id_persona BIGINT NOT NULL,
+                id_datos_catastrales BIGINT NOT NULL,
+                Parent_id_propiedad BIGINT NOT NULL,
+                id_autorizacion BIGINT NOT NULL,
+                CONSTRAINT propiedad_pk PRIMARY KEY (id_propiedad)
+);
+
+
+ALTER SEQUENCE public.propiedad_id_propiedad_seq OWNED BY public.propiedad.id_propiedad;
+
+CREATE TABLE public.propiedad_x_comodidad (
+                id_comodidad BIGINT NOT NULL,
+                id_propiedad BIGINT NOT NULL,
+                CONSTRAINT propiedad_x_comodidad_pk PRIMARY KEY (id_comodidad, id_propiedad)
+);
+
+
+CREATE TABLE public.propiedad_x_composicion (
+                id_propiedad BIGINT NOT NULL,
+                id_comp_amb BIGINT NOT NULL,
+                CONSTRAINT propiedad_x_composicion_pk PRIMARY KEY (id_propiedad, id_comp_amb)
+);
+
+
+CREATE TABLE public.propiedad_x_restriccion (
+                id_propiedad BIGINT NOT NULL,
+                id_restrccion BIGINT NOT NULL,
+                CONSTRAINT propiedad_x_restriccion_pk PRIMARY KEY (id_propiedad, id_restrccion)
+);
+
+
+CREATE TABLE public.estado (
+                id_estado BIGINT NOT NULL,
+                id_propiedad BIGINT NOT NULL,
+                CONSTRAINT estado_pk PRIMARY KEY (id_estado, id_propiedad)
+);
+
+
+CREATE SEQUENCE public.expensas_id_expensa_seq;
+
+CREATE TABLE public.expensas (
+                id_expensa BIGINT NOT NULL DEFAULT nextval('public.expensas_id_expensa_seq'),
+                id_gastos BIGINT NOT NULL,
+                monto REAL NOT NULL,
+                id_egreso BIGINT NOT NULL,
+                id_propiedad BIGINT NOT NULL,
+                CONSTRAINT expensas_pk PRIMARY KEY (id_expensa)
+);
+
+
+ALTER SEQUENCE public.expensas_id_expensa_seq OWNED BY public.expensas.id_expensa;
+
+CREATE SEQUENCE public.novedades_id_novedad_seq;
+
+CREATE TABLE public.novedades (
+                id_novedad BIGINT NOT NULL DEFAULT nextval('public.novedades_id_novedad_seq'),
+                nombre VARCHAR(30) NOT NULL,
+                descripcion VARCHAR NOT NULL,
+                fecha DATE NOT NULL,
+                id_propiedad BIGINT NOT NULL,
+                CONSTRAINT novedades_pk PRIMARY KEY (id_novedad)
+);
+
+
+ALTER SEQUENCE public.novedades_id_novedad_seq OWNED BY public.novedades.id_novedad;
+
+CREATE SEQUENCE public.contratos_id_contrato_seq;
+
+CREATE TABLE public.contratos (
+                id_contrato BIGINT NOT NULL DEFAULT nextval('public.contratos_id_contrato_seq'),
+                id_tipo_de_contrato BIGINT NOT NULL,
+                fecha_inicio DATE NOT NULL,
+                fecha_vencimiento DATE NOT NULL,
+                id_rol BIGINT NOT NULL,
+                CONSTRAINT contratos_pk PRIMARY KEY (id_contrato)
+);
+
+
+ALTER SEQUENCE public.contratos_id_contrato_seq OWNED BY public.contratos.id_contrato;
+
+CREATE TABLE public.cuotas (
+                n_de_cuota INTEGER NOT NULL,
+                fecha_de_pago DATE NOT NULL,
+                monto_alquiler NUMERIC NOT NULL,
+                imas_conexion_n NUMERIC NOT NULL,
+                emsa_conexion_n NUMERIC NOT NULL,
+                pagado BOOLEAN NOT NULL,
+                idperiodo INTEGER NOT NULL,
+                id_contrato BIGINT NOT NULL,
+                CONSTRAINT cuotas_pk PRIMARY KEY (n_de_cuota)
+);
+
+
+CREATE SEQUENCE public.detalle_pago_id_recibo_seq;
+
+CREATE TABLE public.detalle_pago (
+                id_recibo BIGINT NOT NULL DEFAULT nextval('public.detalle_pago_id_recibo_seq'),
+                id_tipo_de_recibo BIGINT NOT NULL,
+                fecha DATE NOT NULL,
+                suma_de_pesos VARCHAR NOT NULL,
+                en_concepto_de VARCHAR(100) NOT NULL,
+                mora NUMERIC NOT NULL,
+                total REAL NOT NULL,
+                id_pago BIGINT NOT NULL,
+                n_de_cuota INTEGER NOT NULL,
+                CONSTRAINT detalle_pago_pk PRIMARY KEY (id_recibo)
+);
+
+
+ALTER SEQUENCE public.detalle_pago_id_recibo_seq OWNED BY public.detalle_pago.id_recibo;
+
+CREATE SEQUENCE public.observaciones_idobservacion_seq;
+
+CREATE TABLE public.observaciones (
+                idobservacion BIGINT NOT NULL DEFAULT nextval('public.observaciones_idobservacion_seq'),
+                nombreobs VARCHAR NOT NULL,
+                id_recibo BIGINT NOT NULL,
+                descripcion VARCHAR NOT NULL,
+                CONSTRAINT observaciones_pk PRIMARY KEY (idobservacion)
+);
+
+
+ALTER SEQUENCE public.observaciones_idobservacion_seq OWNED BY public.observaciones.idobservacion;
+
+CREATE TABLE public.otros_detallepago (
+                id_otro BIGINT NOT NULL,
+                id_recibo BIGINT NOT NULL,
+                CONSTRAINT otros_detallepago_pk PRIMARY KEY (id_otro, id_recibo)
+);
+
+
+CREATE TABLE public.detalle_servicio (
+                id_recibo BIGINT NOT NULL,
+                id_servicio BIGINT NOT NULL,
+                periodo VARCHAR(2) NOT NULL,
+                monto REAL NOT NULL,
+                CONSTRAINT detalle_servicio_pk PRIMARY KEY (id_recibo, id_servicio)
+);
+
+
+CREATE TABLE public.detallecontrato (
+                id_contrato BIGINT NOT NULL,
+                cuota_a NUMERIC NOT NULL,
+                cuota_b NUMERIC NOT NULL,
+                deposito NUMERIC NOT NULL,
+                importe INTEGER NOT NULL,
+                porcentaje INTEGER NOT NULL,
+                CONSTRAINT detallecontrato_pk PRIMARY KEY (id_contrato)
+);
+
+
+CREATE TABLE public.rendiciones (
+                id_rendicion BIGINT NOT NULL,
+                id_contrato BIGINT NOT NULL,
+                administracion_inmobiliaria REAL NOT NULL,
+                CONSTRAINT rendiciones_pk PRIMARY KEY (id_rendicion)
+);
+
+
+CREATE SEQUENCE public.telefono_id_telefono_seq;
+
+CREATE TABLE public.telefono (
+                id_telefono BIGINT NOT NULL DEFAULT nextval('public.telefono_id_telefono_seq'),
+                id_persona BIGINT NOT NULL,
+                id_emp_tel BIGINT NOT NULL,
+                numero NUMERIC(11) NOT NULL,
+                id_tipo_tel BIGINT NOT NULL,
+                CONSTRAINT telefono_pk PRIMARY KEY (id_telefono)
+);
+
+
+ALTER SEQUENCE public.telefono_id_telefono_seq OWNED BY public.telefono.id_telefono;
+
+ALTER TABLE public.cuotas ADD CONSTRAINT periodos_cuotas_fk
+FOREIGN KEY (idperiodo)
+REFERENCES public.periodos (idperiodo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.propiedad_x_comodidad ADD CONSTRAINT comodidades_propiedad_x_comodidad_fk
+FOREIGN KEY (id_comodidad)
+REFERENCES public.comodidades (id_comodidad)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.persona_tipomascota ADD CONSTRAINT tipo_mascota_persona_tipomascota_fk
+FOREIGN KEY (id_tipo_mascota)
+REFERENCES public.tipo_mascota (id_tipo_mascota)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.estado ADD CONSTRAINT tipos_de_estados_estado_fk
+FOREIGN KEY (id_estado)
+REFERENCES public.tipos_de_estados (id_estado)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.detalle_egreso ADD CONSTRAINT egresos_detalle_egreso_fk
+FOREIGN KEY (id_egreso)
+REFERENCES public.egresos (id_egreso)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.expensas ADD CONSTRAINT egresos_expensas_fk
+FOREIGN KEY (id_egreso)
+REFERENCES public.egresos (id_egreso)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.forma_de_pago ADD CONSTRAINT empresa_com_forma_de_pago_fk
+FOREIGN KEY (id_empresa_com)
+REFERENCES public.empresa_com (id_empresa_com)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.telefono ADD CONSTRAINT tipo_telefono_telefono_fk
+FOREIGN KEY (id_tipo_tel)
+REFERENCES public.tipo_telefono (id_tipo_tel)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.autorizaciones ADD CONSTRAINT tipo_autorizacion_autorizaciones_fk
+FOREIGN KEY (id_tipo_autorizacion)
+REFERENCES public.tipo_autorizacion (id_tipo_autorizacion)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.otros_detallepago ADD CONSTRAINT otros_otros_detallepago_fk
+FOREIGN KEY (id_otro)
+REFERENCES public.otros (id_otro)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.detalle_gastos ADD CONSTRAINT tipos_de_gastos_detalle_gastos_fk
+FOREIGN KEY (id_tipo_de_gastos)
+REFERENCES public.tipos_de_gastos (id_tipo_de_gastos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.detalle_gastos ADD CONSTRAINT gastos_detalle_gastos_fk
+FOREIGN KEY (id_gastos)
+REFERENCES public.gastos (id_gastos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.expensas ADD CONSTRAINT gastos_expensas_fk
+FOREIGN KEY (id_gastos)
+REFERENCES public.gastos (id_gastos)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.persona ADD CONSTRAINT tipo_de_doc_persona_fk
+FOREIGN KEY (id_tipodoc)
+REFERENCES public.tipo_de_doc (id_tipodoc)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.provincia ADD CONSTRAINT pais_provincia_fk
+FOREIGN KEY (id_pais)
+REFERENCES public.pais (id_pais)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.ciudad ADD CONSTRAINT provincia_ciudad_fk
+FOREIGN KEY (id_provincia)
+REFERENCES public.provincia (id_provincia)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.barrio ADD CONSTRAINT ciudad_barrio_fk
+FOREIGN KEY (id_ciudad)
+REFERENCES public.ciudad (id_ciudad)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.detalle_pago ADD CONSTRAINT tipo_de_recibos_recibos_fk
+FOREIGN KEY (id_tipo_de_recibo)
+REFERENCES public.tipo_de_recibos (id_tipo_de_recibo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.contratos ADD CONSTRAINT tipo_de_contrato_contratos_fk
+FOREIGN KEY (id_tipo_de_contrato)
+REFERENCES public.tipo_de_contrato (id_tipo_de_contrato)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.propiedad_x_composicion ADD CONSTRAINT composicion_ambiental_propiedad_x_composicion_fk
+FOREIGN KEY (id_comp_amb)
+REFERENCES public.composicion_ambiental (id_comp_amb)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.telefono ADD CONSTRAINT linea_telefono_fk
+FOREIGN KEY (id_emp_tel)
+REFERENCES public.empresa_telefono (id_emp_tel)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.persona ADD CONSTRAINT tipo_de_iva_persona_fk
+FOREIGN KEY (id_iva)
+REFERENCES public.tipo_de_iva (id_iva)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.propiedad ADD CONSTRAINT datos_catastrales_propiedad_fk
+FOREIGN KEY (id_datos_catastrales)
+REFERENCES public.datos_catastrales (id_datos_catastrales)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.persona ADD CONSTRAINT estado_civil_persona_fk
+FOREIGN KEY (id_estado_civil)
+REFERENCES public.estado_civil (id_estado_civil)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.forma_de_pago ADD CONSTRAINT tipo_de_pagos_forma_de_pago_fk
+FOREIGN KEY (id_tipo_pago)
+REFERENCES public.tipo_de_pagos (id_tipo_pago)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.detalle_pago ADD CONSTRAINT pagos_detalle_pago_fk
+FOREIGN KEY (id_pago)
+REFERENCES public.pagos (id_pago)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.forma_de_pago ADD CONSTRAINT pagos_forma_de_pago_fk
+FOREIGN KEY (id_pago)
+REFERENCES public.pagos (id_pago)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.requisitos_x_persona ADD CONSTRAINT requisitos_persona_x_requisitos_fk
+FOREIGN KEY (id_requisito)
+REFERENCES public.requisitos (id_requisito)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.domicilio ADD CONSTRAINT barrio_domicilio_fk
+FOREIGN KEY (barrio_id_barrio)
+REFERENCES public.barrio (id_barrio)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.propiedad_x_restriccion ADD CONSTRAINT retricciones_propiedad_x_restriccion_fk
+FOREIGN KEY (id_restrccion)
+REFERENCES public.retricciones (id_restrccion)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.propiedad ADD CONSTRAINT servicios_propiedad_fk
+FOREIGN KEY (id_servicio)
+REFERENCES public.servicio (id_servicio)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.detalle_servicio ADD CONSTRAINT servicio_detalle_servicio_fk
+FOREIGN KEY (id_servicio)
+REFERENCES public.servicio (id_servicio)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.propiedad ADD CONSTRAINT tipo_de_propiedad_propiedad_fk
+FOREIGN KEY (id_tipo_propiedad)
+REFERENCES public.tipo_de_propiedad (id_tipo_propiedad)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.roles ADD CONSTRAINT rol_roles_fk
+FOREIGN KEY (id_rol)
+REFERENCES public.rol (id_rol)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.persona ADD CONSTRAINT tipo_de_persona_persona_fk
+FOREIGN KEY (id_tipo_persona)
+REFERENCES public.tipo_de_persona (id_tipo_persona)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.telefono ADD CONSTRAINT persona_telefono_fk
+FOREIGN KEY (id_persona)
+REFERENCES public.persona (id_persona)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.roles ADD CONSTRAINT persona_roles_fk
+FOREIGN KEY (id_persona)
+REFERENCES public.persona (id_persona)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.propiedad ADD CONSTRAINT persona_propiedad_fk
+FOREIGN KEY (id_persona)
+REFERENCES public.persona (id_persona)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.domicilio ADD CONSTRAINT persona_domicilio_fk
+FOREIGN KEY (id_persona)
+REFERENCES public.persona (id_persona)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.requisitos_x_persona ADD CONSTRAINT persona_persona_x_requisitos_fk
+FOREIGN KEY (id_persona)
+REFERENCES public.persona (id_persona)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.persona_tipomascota ADD CONSTRAINT persona_persona_tipomascota_fk
+FOREIGN KEY (id_persona)
+REFERENCES public.persona (id_persona)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.correo ADD CONSTRAINT persona_correo_fk
+FOREIGN KEY (id_persona)
+REFERENCES public.persona (id_persona)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.propiedad ADD CONSTRAINT domicilio_propiedad_fk
+FOREIGN KEY (id_domicilio)
+REFERENCES public.domicilio (id_domicilio)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.contratos ADD CONSTRAINT roles_contratos_fk
+FOREIGN KEY (id_rol)
+REFERENCES public.roles (id_rol)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.autorizaciones ADD CONSTRAINT roles_autorizaciones_fk
+FOREIGN KEY (id_rol, id_persona)
+REFERENCES public.roles (id_rol, id_persona)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.propiedad ADD CONSTRAINT autorizaciones_propiedad_fk
+FOREIGN KEY (id_autorizacion)
+REFERENCES public.autorizaciones (id_autorizacion)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.novedades ADD CONSTRAINT propiedad_novedades_fk
+FOREIGN KEY (id_propiedad)
+REFERENCES public.propiedad (id_propiedad)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
