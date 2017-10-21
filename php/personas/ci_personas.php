@@ -33,6 +33,7 @@ class ci_personas extends SIAN_sg_ci
 
 	function evt__procesar()
 	{
+		$this->dep('ci_abm_personas')->setear_todos_los_formularios();
 		try {
       $this->cn()->sincronizar();
       $this->cn()->resetear();
