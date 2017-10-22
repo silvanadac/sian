@@ -51,7 +51,6 @@ class abm_propiedades extends SIAN_sg_ci
 	function evt__form__modificacion($datos)
 	{
 	$this->s__datos['form'] = $datos;
-	$this->cn()->set_propiedades($datos);
 	}
 
 	function conf__form(SIAN_sg_ei_formulario $form)
@@ -65,7 +64,6 @@ class abm_propiedades extends SIAN_sg_ci
 	function evt__form_ml_com__modificacion($datos)
 	{
 		$this->s__datos['form_ml_com'] = $datos;
-		$this->cn()->procesar_filas_comodidades($datos);
 	}
 
 	function conf__form_ml_com(SIAN_sg_ei_formulario_ml $form_ml)
@@ -86,7 +84,6 @@ class abm_propiedades extends SIAN_sg_ci
 	function evt__form_ml_comp__modificacion($datos)
 	{
 		$this->s__datos['form_ml_comp'] = $datos;
-		$this->cn()->procesar_filas_composicion_ambiental($datos);
 	}
 
 	function conf__form_ml_comp(SIAN_sg_ei_formulario_ml $form_ml)
@@ -104,45 +101,85 @@ class abm_propiedades extends SIAN_sg_ci
 	//-----------------------------------------------------------------------------------
 	//---- form_datos_catastrales -------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
-	function evt__form_datos_catastrales__modificacion($datos)
+	function conf__form_datos_catastrales(SIAN_sg_ei_formulario $form)
 	{
-		$this->s__datos['form_datos_catastrales'] = $datos;
-		$this->cn()->set_datos_catastrales($datos);
+		 $this->s__datos['form_datos_catastrales'] = $datos;
 	}
 
-	function conf__form_datos_catastrales(SIAN_sg_ei_formulario $form)
+	function evt_form_datos_catastrales_modificacion($datos)
 	{
-		if (isset($this->s__datos['form_datos_catastrales'])) {
-			$form->set_datos($this->s__datos['form_datos_catastrales']);
-			}
-			else {
-			    if ($this->cn()->hay_cursor_datos()) {
-			        $datos = $this->cn()->get_datos_catastrales();
-			        $this->s__datos['form_datos_catastrales'] = $datos;
-			        $form->set_datos($datos);
-			    }
-			}
+		if ($this->cn()->hay_cursor()) { //Estamos editando un registro existente?
+ 				$this->cn()->set_datos_catastrales($datos);
+				} else {
+					$this->cn()->set_datos_catastrales($datos);
+ 					}
+ 		$this->s__datos['form_datos_catastrales'] = $datos;
+ 	}
+	//-----------------------------------------------------------------------------------
+	//---- form_ml_restrcciones -------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function evt__form_ml_restrcciones__modificacion($datos)
+	{
+		$this->s__datos['form_ml_restrcciones'] = $datos;
 	}
-	// //-----------------------------------------------------------------------------------
-	// //---- form_ml_domicilio -------------------------------------------------------------
-	// //-----------------------------------------------------------------------------------
-	// function evt__form_ml_domicilio__modificacion($datos)
-	// {
-	//     $this->s__datos['form_ml_domicilio'] = $datos;
-	//     $this->cn()->procesar_filas_domicilio($datos);
-	// }
-	//
-	// function conf__form_ml_domicilio(SIAN_sg_ei_formulario_ml $form_ml)
-	// {
-	//     if (isset($this->s__datos['form_ml_domicilio'])) {
-	//     $form_ml->set_datos($this->s__datos['form_ml_domicilio']);
-	//     } else {
-	//         if ($this->cn()->hay_cursor()) {
-	//             $datos = $this->cn()->get_domicilio();
-	//             $this->s__datos['form_ml_domicilio'] = $datos;
-	//             $form_ml->set_datos($datos);
-	//         }
-	//     }
-	// }
-}
+
+	function conf__form_ml_restrcciones(SIAN_sg_ei_formulario_ml $form_ml)
+	{
+		if (isset($this->s__datos['form_ml_restrcciones'])) {
+		$form_ml->set_datos($this->s__datos['form_ml_restrcciones']);
+		} else {
+			if ($this->cn()->hay_cursor()) {
+				$datos = $this->cn()->get_restricciones();
+				$this->s__datos['form_ml_restrcciones'] = $datos;
+				$form_ml->set_datos($datos);
+			}
+		}
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- form_ml_novedades -------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function evt__form_ml_novedades__modificacion($datos)
+	{
+		$this->s__datos['form_ml_novedades'] = $datos;
+	}
+
+	function conf__form_ml_novedades(SIAN_sg_ei_formulario_ml $form_ml)
+	{
+		if (isset($this->s__datos['form_ml_novedades'])) {
+		$form_ml->set_datos($this->s__datos['form_ml_novedades']);
+		} else {
+			if ($this->cn()->hay_cursor()) {
+				$datos = $this->cn()->get_novedades();
+				$this->s__datos['form_ml_novedades'] = $datos;
+				$form_ml->set_datos($datos);
+			}
+		}
+	}
+
+	function setear_todos_los_formularios()
+		{
+			if (isset($this->s__datos['form'])) {
+				$this->cn()->set_propiedades($this->s__datos['form']);
+			}
+			if (isset ($this->s__datos['form_ml_com'])){
+				$this->cn()->procesar_filas_comodidades($this->s__datos['form_ml_com']);
+			}
+			if (isset ($this->s__datos['form_ml_comp'])){
+				$this->cn()->procesar_filas_composicion_ambiental($this->s__datos['form_ml_comp']);
+			}
+			if (isset ($this->s__datos['form_datos_catastrales'])){
+				$this->cn()->procesar_filas_domicilio($this->s__datos['form_datos_catastrales']);
+			}
+			if (isset ($this->s__datos['form_ml_restrcciones'])){
+				$this->cn()->procesar_filas_restricciones($this->s__datos['form_ml_restrcciones']);
+			}
+			if (isset ($this->s__datos['form_ml_novedades'])){
+				$this->cn()->procesar_filas_novedades($this->s__datos['form_ml_novedades']);
+			}
+			if (isset ($this->s__datos['form_datos_catastrales'])){
+				$this->cn()->set_datos_catastrales($this->s__datos['form_datos_catastrales']);
+			}
+		}
+	}
 ?>

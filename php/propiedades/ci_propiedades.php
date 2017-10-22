@@ -31,10 +31,11 @@ function evt__volver()
 
 function evt__procesar()
 {
+  $this->dep('abm_propiedades')->setear_todos_los_formularios();
   try {
     $this->cn()->sincronizar();
     $this->cn()->resetear();
-    $this->evt__volver();
+    $this->evt__cancelar();
   } catch (toba_error_db $e) {
 
     if (adebug::$debug) {
@@ -43,11 +44,12 @@ function evt__procesar()
       $this->cn()->resetear();
       $sql_state = $e->get_sqlstate();
       if ($sql_state == 'db_23505') {
-        throw new toba_error_usuario('Ya existe la propiedad');
+        throw new toba_error_usuario('La propiedad que intenta cargar ya exite en la base de datos');
       }
     }
   $this->cn()->resetear();
   }
+}
 }
 //-----------------------------------------------------------------------------------
 //---- filtro -------------------------------------------------------------------
@@ -106,5 +108,4 @@ function conf__pant_edicion(toba_ei_pantalla $pantalla)
     $this->pantalla()->eliminar_evento('eliminar');
   }
 }
-}
- ?>
+?>
