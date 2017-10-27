@@ -4,7 +4,7 @@ class dao_propiedades
 {
   static function get_datos($where='')
   {
-    // ei_arbol($where);
+    ei_arbol($where);
     if($where){
       $where_armado="WHERE $where";
       }else {

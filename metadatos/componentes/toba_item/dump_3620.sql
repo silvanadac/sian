@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[3620]--  gestion_contratos 
+--[3620]--  Gestión de Contratos 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -23,12 +23,12 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 	NULL, --actividad_buffer
 	NULL, --actividad_patron_proyecto
 	NULL, --actividad_patron
-	'gestion_contratos', --nombre
+	'Gestión de Contratos', --nombre
 	NULL, --descripcion
 	'23', --punto_montaje
 	NULL, --actividad_accion
 	'1', --menu
-	NULL, --orden
+	'2', --orden
 	'0', --solicitud_registrar
 	NULL, --solicitud_obs_tipo_proyecto
 	NULL, --solicitud_obs_tipo
