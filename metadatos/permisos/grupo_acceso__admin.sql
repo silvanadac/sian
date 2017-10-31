@@ -86,12 +86,6 @@ INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, i
 	'SIAN_sg', --proyecto
 	'admin', --usuario_grupo_acc
 	NULL, --item_id
-	'3610'  --item
-);
-INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
-	'SIAN_sg', --proyecto
-	'admin', --usuario_grupo_acc
-	NULL, --item_id
 	'3613'  --item
 );
 INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
@@ -195,5 +189,11 @@ INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, i
 	'admin', --usuario_grupo_acc
 	NULL, --item_id
 	'3636'  --item
+);
+INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
+	'SIAN_sg', --proyecto
+	'admin', --usuario_grupo_acc
+	NULL, --item_id
+	'3638'  --item
 );
 --- FIN Grupo de desarrollo 0
