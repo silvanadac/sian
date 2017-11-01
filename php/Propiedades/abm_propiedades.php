@@ -22,11 +22,11 @@ class abm_propiedades extends SIAN_sg_ci
 //-----------------------------------------------------------------------------------
 //---- form_ml_com-------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-	function evt__form_ml_com__modificacion($datos)
+	function evt__form_ml_comodidades__modificacion($datos)
 	{
-		$this->s__datos['form_ml_com'] = $datos;
+		$this->s__datos['form_ml_comodidades'] = $datos;
 	}
-	function conf__form_ml_com(SIAN_sg_ei_formulario_ml $form_ml)
+	function conf__form_ml_comodidades(SIAN_sg_ei_formulario_ml $form_ml)
 	{
 		$datos = $this->cn()->get_comodidades();
 		$form_ml->set_datos($datos);
@@ -34,14 +34,41 @@ class abm_propiedades extends SIAN_sg_ci
 //-----------------------------------------------------------------------------------
 //---- form_ml_comp -------------------------------------------------------------
 //-----------------------------------------------------------------------------------
-	function evt__form_ml_comp__modificacion($datos)
+	function evt__form_ml_composicion__modificacion($datos)
 	{
-		$this->s__datos['form_ml_comp'] = $datos;
+		$this->s__datos['form_ml_composicion'] = $datos;
 	}
 
-	function conf__form_ml_comp(SIAN_sg_ei_formulario_ml $form_ml)
+	function conf__form_ml_composicion(SIAN_sg_ei_formulario_ml $form_ml)
 	{
 		$datos = $this->cn()->get_composicion_ambiental();
+		$form_ml->set_datos($datos);
+	}
+
+//-----------------------------------------------------------------------------------
+//---- form_ml_domicilio_x_propiedad -------------------------------------------------------------
+//-----------------------------------------------------------------------------------
+	function evt__form_ml_domicilio_x_propiedad__modificacion($datos)
+	{
+		$this->s__datos['form_ml_domicilio_x_propiedad'] = $datos;
+	}
+
+	function conf__form_ml_domicilio_x_propiedad(SIAN_sg_ei_formulario_ml $form_ml)
+	{
+		$datos = $this->cn()->get_domicilio();
+		$form_ml->set_datos($datos);
+	}
+//-----------------------------------------------------------------------------------
+//---- form_ml_restricciones -------------------------------------------------------------
+//-----------------------------------------------------------------------------------
+	function evt__form_ml_restricciones__modificacion($datos)
+	{
+		$this->s__datos['form_ml_restricciones'] = $datos;
+	}
+
+	function conf__form_ml_restricciones(SIAN_sg_ei_formulario_ml $form_ml)
+	{
+		$datos = $this->cn()->get_restricciones();
 		$form_ml->set_datos($datos);
 	}
 
@@ -50,12 +77,18 @@ class abm_propiedades extends SIAN_sg_ci
 		if (isset($this->s__datos['form'])) {
         $this->cn()->set_propiedades($this->s__datos['form']);
 	    }
-		if (isset ($this->s__datos['form_ml_comp'])){
-	      $this->cn()->procesar_filas_composicion_ambiental($this->s__datos['form_ml_comp']);
+		if (isset ($this->s__datos['form_ml_composicion'])){
+	      $this->cn()->procesar_filas_composicion_ambiental($this->s__datos['form_ml_composicion']);
 	    }
-    if (isset ($this->s__datos['form_ml_com'])){
-	      $this->cn()->procesar_filas_comodidades($this->s__datos['form_ml_com']);
+    if (isset ($this->s__datos['form_ml_comodidades'])){
+	      $this->cn()->procesar_filas_comodidades($this->s__datos['form_ml_comodidades']);
       }
+		if (isset ($this->s__datos['form_ml_domicilio_x_propiedad'])){
+		    $this->cn()->procesar_filas_domicilio($this->s__datos['form_ml_domicilio_x_propiedad']);
+	    }
+		if (isset ($this->s__datos['form_ml_restricciones'])){
+		    $this->cn()->procesar_filas_restricciones($this->s__datos['form_ml_restricciones']);
+	    }
   	}
 }
 ?>

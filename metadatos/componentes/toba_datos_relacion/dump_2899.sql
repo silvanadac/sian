@@ -65,6 +65,54 @@ INSERT INTO apex_objeto_datos_rel (proyecto, objeto, debug, clave, ap, punto_mon
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'SIAN_sg', --proyecto
+	'1694', --dep_id
+	'2899', --objeto_consumidor
+	'2904', --objeto_proveedor
+	'dt_domicilio_x_propiedad', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'4'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'1692', --dep_id
+	'2899', --objeto_consumidor
+	'2901', --objeto_proveedor
+	'dt_propiedad_x_comodidad', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'2'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'1693', --dep_id
+	'2899', --objeto_consumidor
+	'2902', --objeto_proveedor
+	'dt_propiedad_x_composicion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'3'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'1696', --dep_id
+	'2899', --objeto_consumidor
+	'2913', --objeto_proveedor
+	'dt_propiedad_x_restriccion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'5'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
 	'1687', --dep_id
 	'2899', --objeto_consumidor
 	'2900', --objeto_proveedor
@@ -76,3 +124,114 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	'1'  --orden
 );
 --- FIN Grupo de desarrollo 0
+
+------------------------------------------------------------
+-- apex_objeto_datos_rel_asoc
+------------------------------------------------------------
+
+--- INICIO Grupo de desarrollo 0
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'72', --asoc_id
+	NULL, --identificador
+	'SIAN_sg', --padre_proyecto
+	'2900', --padre_objeto
+	'dt_propiedades', --padre_id
+	NULL, --padre_clave
+	'SIAN_sg', --hijo_proyecto
+	'2901', --hijo_objeto
+	'dt_propiedad_x_comodidad', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'1'  --orden
+);
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'73', --asoc_id
+	NULL, --identificador
+	'SIAN_sg', --padre_proyecto
+	'2900', --padre_objeto
+	'dt_propiedades', --padre_id
+	NULL, --padre_clave
+	'SIAN_sg', --hijo_proyecto
+	'2902', --hijo_objeto
+	'dt_propiedad_x_composicion', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'2'  --orden
+);
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'74', --asoc_id
+	NULL, --identificador
+	'SIAN_sg', --padre_proyecto
+	'2900', --padre_objeto
+	'dt_propiedades', --padre_id
+	NULL, --padre_clave
+	'SIAN_sg', --hijo_proyecto
+	'2904', --hijo_objeto
+	'dt_domicilio_x_propiedad', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'3'  --orden
+);
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'75', --asoc_id
+	NULL, --identificador
+	'SIAN_sg', --padre_proyecto
+	'2900', --padre_objeto
+	'dt_propiedades', --padre_id
+	NULL, --padre_clave
+	'SIAN_sg', --hijo_proyecto
+	'2913', --hijo_objeto
+	'dt_propiedad_x_restriccion', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'4'  --orden
+);
+--- FIN Grupo de desarrollo 0
+
+------------------------------------------------------------
+-- apex_objeto_rel_columnas_asoc
+------------------------------------------------------------
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'72', --asoc_id
+	'2900', --padre_objeto
+	'1314', --padre_clave
+	'2901', --hijo_objeto
+	'1321'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'73', --asoc_id
+	'2900', --padre_objeto
+	'1314', --padre_clave
+	'2902', --hijo_objeto
+	'1322'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'74', --asoc_id
+	'2900', --padre_objeto
+	'1314', --padre_clave
+	'2904', --hijo_objeto
+	'1330'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'75', --asoc_id
+	'2900', --padre_objeto
+	'1314', --padre_clave
+	'2913', --hijo_objeto
+	'1341'  --hijo_clave
+);

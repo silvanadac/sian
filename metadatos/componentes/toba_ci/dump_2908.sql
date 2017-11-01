@@ -108,6 +108,42 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	NULL, --inicializar
 	NULL  --orden
 );
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'1691', --dep_id
+	'2908', --objeto_consumidor
+	'2912', --objeto_proveedor
+	'form_ml_domicilio_x_propiedad', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'1697', --dep_id
+	'2908', --objeto_consumidor
+	'2915', --objeto_proveedor
+	'form_ml_novedades', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'1695', --dep_id
+	'2908', --objeto_consumidor
+	'2914', --objeto_proveedor
+	'form_ml_restricciones', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
 --- FIN Grupo de desarrollo 0
 
 ------------------------------------------------------------
@@ -254,4 +290,25 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'2908', --objeto_ci
 	'1', --orden
 	'1690'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'SIAN_sg', --proyecto
+	'1366', --pantalla
+	'2908', --objeto_ci
+	'0', --orden
+	'1691'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'SIAN_sg', --proyecto
+	'1367', --pantalla
+	'2908', --objeto_ci
+	'0', --orden
+	'1695'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'SIAN_sg', --proyecto
+	'1368', --pantalla
+	'2908', --objeto_ci
+	'0', --orden
+	'1697'  --dep_id
 );

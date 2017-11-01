@@ -61,5 +61,24 @@ class dao_propiedades
       return 'Fallo, intente nuevamente';
     }
   }
+  //-----------------------------------------------------------------------------------
+	//----form_ml_restricciones ----------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+  static function get_restricciones($id_restriccion)
+  {
+    $id_restriccion = quote($id_restriccion);
+
+    $sql = "SELECT nombre_restriccion
+              FROM restricciones
+              WHERE id_restriccion = $id_restriccion";
+
+    $resultado = consultar_fuente($sql);
+
+    if (count($resultado) > 0 ){
+      return $resultado[0]['nombre_restriccion'];
+    } else {
+      return 'Fallo, intente nuevamente';
+    }
+  }
 }
 ?>

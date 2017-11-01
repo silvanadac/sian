@@ -71,7 +71,7 @@ class cn_propiedades extends SIAN_sg_cn
 			$datos['imagen_vista'] = "<img src='{$temp_archivo['url']}' alt=''>";
 
 			// $datos['imagen_vista'] = "<img src = '{$temp_archivo['url']}' alt=\"Imagen\" WIDTH=180 HEIGHT=150 >";
-			$datos['imagen'] = 'Tama?o foto actual: '.$tamaño.' KB';
+			$datos['imagen'] = 'Tamaño foto actual: '.$tamaño.' KB';
 		} else {
 			$datos['imagen'] = null;
 		}
@@ -101,6 +101,32 @@ class cn_propiedades extends SIAN_sg_cn
 	function get_composicion_ambiental()
 	{
 		$datos = $this->dep('dr_propiedades')->tabla('dt_propiedad_x_composicion')->get_filas();
+		return $datos;
+	}
+	//-----------------------------------------------------------------------------------
+	//---- dt_domilicio_x_propiedad ----------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function procesar_filas_domicilio($datos)
+	{
+		$this->dep('dr_propiedades')->tabla('dt_domicilio_x_propiedad')->procesar_filas($datos);
+	}
+	function get_domicilio()
+	{
+		$datos = $this->dep('dr_propiedades')->tabla('dt_domicilio_x_propiedad')->get_filas();
+		return $datos;
+	}
+	//-----------------------------------------------------------------------------------
+	//---- dt_propiedad_x_restriccion ----------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function procesar_filas_restricciones($datos)
+	{
+		$this->dep('dr_propiedades')->tabla('dt_propiedad_x_restriccion')->procesar_filas($datos);
+	}
+	function get_restricciones()
+	{
+		$datos = $this->dep('dr_propiedades')->tabla('dt_propiedad_x_restriccion')->get_filas();
 		return $datos;
 	}
 }
