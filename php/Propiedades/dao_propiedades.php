@@ -15,10 +15,11 @@ class dao_propiedades
              t_pr.departamentos,
              t_tpr.id_tipo_propiedad,
              t_tpr.nombre_tipopropiedad,
-             t_pr.parent_id_propiedad
+             t_ps.nombre_propiedad as padre
              FROM
             	propiedades t_pr
             	inner join tipo_de_propiedad t_tpr on t_pr.id_tipo_propiedad=t_tpr.id_tipo_propiedad
+		          JOIN propiedades t_ps ON t_pr.parent_id_propiedad = t_ps.id_propiedad
               $where_armado";
     $datos = consultar_fuente($sql);
     return $datos;

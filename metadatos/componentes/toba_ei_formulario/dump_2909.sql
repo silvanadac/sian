@@ -220,7 +220,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'nombre_propiedad', --columnas
 	'1', --obligatorio
 	'0', --oculto_relaja_obligatorio
-	'2', --orden
+	'3', --orden
 	'Nombre propiedad', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
@@ -300,7 +300,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'departamentos', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
-	'3', --orden
+	'4', --orden
 	'Departamentos', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
@@ -380,7 +380,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'id_tipo_propiedad', --columnas
 	'1', --obligatorio
 	'0', --oculto_relaja_obligatorio
-	'4', --orden
+	'5', --orden
 	'Tipo propiedad', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
@@ -456,12 +456,12 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'2909', --objeto_ei_formulario
 	'SIAN_sg', --objeto_ei_formulario_proyecto
 	'parent_id_propiedad', --identificador
-	'ef_editable', --elemento_formulario
+	'ef_combo', --elemento_formulario
 	'parent_id_propiedad', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
-	'5', --orden
-	'Parent id propiedad', --etiqueta
+	'2', --orden
+	'Padre', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
 	'0', --colapsado
@@ -474,16 +474,16 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --estado_defecto
 	'0', --solo_lectura
 	'0', --solo_lectura_modificacion
-	NULL, --carga_metodo
+	'get_desPropiedades', --carga_metodo
 	NULL, --carga_clase
 	NULL, --carga_include
-	NULL, --carga_dt
+	'2900', --carga_dt
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'SIAN_sg', --carga_fuente
 	NULL, --carga_lista
-	'id_persona', --carga_col_clave
-	'nombre', --carga_col_desc
+	'id_propiedad', --carga_col_clave
+	'nombre_propiedad', --carga_col_desc
 	NULL, --carga_maestros
 	'0', --carga_cascada_relaj
 	'0', --cascada_mantiene_estado
