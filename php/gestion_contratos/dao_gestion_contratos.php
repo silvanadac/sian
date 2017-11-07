@@ -39,6 +39,25 @@ static function get_descPopupPersonas($id_persona)
   if (count($resultado) > 0 ){
     return $resultado[0]['entidad'];
   } else {
+    return 'Fall?, intente nuevamente';
+  }
+}
+
+static function get_descPropiedades($id_propiedad)
+{
+  $id_propiedad = quote($id_propiedad);
+
+  $sql = "SELECT
+            nombre_propiedad
+            FROM
+            propiedades
+            WHERE id_propiedad = $id_propiedad";
+
+  $resultado = consultar_fuente($sql);
+
+  if (count($resultado) > 0 ){
+    return $resultado[0]['nombre_propiedad'];
+  } else {
     return 'Falló, intente nuevamente';
   }
 }

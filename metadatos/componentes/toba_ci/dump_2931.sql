@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[2871]--  ci_gestion_autorizaciones - ci_abm_autorizaciones 
+--[2931]--  propiedades_popup - CI 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -9,23 +9,23 @@
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'SIAN_sg', --proyecto
-	'2871', --objeto
+	'2931', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
 	'toba', --clase_proyecto
 	'toba_ci', --clase
 	'23', --punto_montaje
-	'ci_abm_autorizaciones', --subclase
-	'gestion_autorizaciones/ci_abm_autorizaciones.php', --subclase_archivo
+	'ci_propiedades_popup', --subclase
+	'propiedades_popup/ci_propiedades_popup.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'ci_gestion_autorizaciones - ci_abm_autorizaciones', --nombre
+	'propiedades_popup - CI', --nombre
 	NULL, --titulo
-	'0', --colapsable
+	NULL, --colapsable
 	NULL, --descripcion
-	NULL, --fuente_datos_proyecto
-	NULL, --fuente_datos
+	'SIAN_sg', --fuente_datos_proyecto
+	'SIAN_sg', --fuente_datos
 	NULL, --solicitud_registrar
 	NULL, --solicitud_obj_obs_tipo
 	NULL, --solicitud_obj_observacion
@@ -36,8 +36,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2017-10-23 18:32:22', --creacion
-	'abajo'  --posicion_botonera
+	'2017-11-06 16:57:03', --creacion
+	NULL  --posicion_botonera
 );
 --- FIN Grupo de desarrollo 0
 
@@ -46,15 +46,15 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 ------------------------------------------------------------
 INSERT INTO apex_objeto_mt_me (objeto_mt_me_proyecto, objeto_mt_me, ev_procesar_etiq, ev_cancelar_etiq, ancho, alto, posicion_botonera, tipo_navegacion, botonera_barra_item, con_toc, incremental, debug_eventos, activacion_procesar, activacion_cancelar, ev_procesar, ev_cancelar, objetos, post_procesar, metodo_despachador, metodo_opciones) VALUES (
 	'SIAN_sg', --objeto_mt_me_proyecto
-	'2871', --objeto_mt_me
+	'2931', --objeto_mt_me
 	NULL, --ev_procesar_etiq
 	NULL, --ev_cancelar_etiq
-	'100%', --ancho
-	NULL, --alto
+	'500px', --ancho
+	'300px', --alto
 	NULL, --posicion_botonera
 	NULL, --tipo_navegacion
-	'0', --botonera_barra_item
-	'0', --con_toc
+	NULL, --botonera_barra_item
+	NULL, --con_toc
 	NULL, --incremental
 	NULL, --debug_eventos
 	NULL, --activacion_procesar
@@ -74,10 +74,34 @@ INSERT INTO apex_objeto_mt_me (objeto_mt_me_proyecto, objeto_mt_me, ev_procesar_
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'SIAN_sg', --proyecto
-	'1700', --dep_id
-	'2871', --objeto_consumidor
-	'2918', --objeto_proveedor
-	'form', --identificador
+	'1711', --dep_id
+	'2931', --objeto_consumidor
+	'2928', --objeto_proveedor
+	'cuadro', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'1710', --dep_id
+	'2931', --objeto_consumidor
+	'2927', --objeto_proveedor
+	'datos', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'1714', --dep_id
+	'2931', --objeto_consumidor
+	'2932', --objeto_proveedor
+	'filtro', --identificador
 	NULL, --parametros_a
 	NULL, --parametros_b
 	NULL, --parametros_c
@@ -93,11 +117,11 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, identificador, orden, etiqueta, descripcion, tip, imagen_recurso_origen, imagen, objetos, eventos, subclase, subclase_archivo, template, template_impresion, punto_montaje) VALUES (
 	'SIAN_sg', --objeto_ci_proyecto
-	'2871', --objeto_ci
-	'1352', --pantalla
-	'pant_inicial', --identificador
-	NULL, --orden
-	'Pantalla Inicial', --etiqueta
+	'2931', --objeto_ci
+	'1371', --pantalla
+	'pant_edicion', --identificador
+	'0', --orden
+	'Pantalla', --etiqueta
 	NULL, --descripcion
 	NULL, --tip
 	NULL, --imagen_recurso_origen
@@ -117,8 +141,15 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 ------------------------------------------------------------
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'SIAN_sg', --proyecto
-	'1352', --pantalla
-	'2871', --objeto_ci
-	'0', --orden
-	'1700'  --dep_id
+	'1371', --pantalla
+	'2931', --objeto_ci
+	'1', --orden
+	'1711'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'SIAN_sg', --proyecto
+	'1371', --pantalla
+	'2931', --objeto_ci
+	'2', --orden
+	'1714'  --dep_id
 );
