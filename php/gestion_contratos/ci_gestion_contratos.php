@@ -26,7 +26,7 @@ class ci_gestion_contratos extends SIAN_sg_ci
 	function evt__cancelar()
 	{
 		unset($this->s__datos);
-		$this->dep('ci_abm_contratos')->disparar_limpieza_memoria();
+		$this->dep('ci_abm_contrato')->disparar_limpieza_memoria();
 		$this->cn()->resetear();
 		$this->set_pantalla('pant_inicial');
 	}
@@ -94,11 +94,6 @@ class ci_gestion_contratos extends SIAN_sg_ci
 		$this->set_pantalla('pant_edicion');
 	}
 
-	function evt__cuadro__eliminar($seleccion)
-	{
-		$this->cn()->cargar($seleccion);
-		$this->cn()->eliminar();
-	}
 	//-----------------------------------------------------------------------------------
 	//---- configuraciones------------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------

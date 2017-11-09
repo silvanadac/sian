@@ -15,8 +15,10 @@ class dao_gestion_contratos
             	ttc.id_tipo_de_contrato,
             	ttc.nombre_contrato,
             	tc.fecha_inicio,
-            	tc.fecha_vencimiento
+            	tc.fecha_vencimiento,
+              tpr.nombre_propiedad
             	FROM contratos tc
+              inner join propiedades tpr on tpr.id_propiedad= tc.id_propiedad
             	inner join tipo_de_contrato ttc on ttc.id_tipo_de_contrato = tc.id_tipo_de_contrato
               $where_armado";
     $datos = consultar_fuente($sql);
@@ -58,7 +60,7 @@ static function get_descPropiedades($id_propiedad)
   if (count($resultado) > 0 ){
     return $resultado[0]['nombre_propiedad'];
   } else {
-    return 'Falló, intente nuevamente';
+    return 'Fallï¿½, intente nuevamente';
   }
 }
 }

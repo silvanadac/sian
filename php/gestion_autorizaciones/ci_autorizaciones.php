@@ -94,12 +94,7 @@ class ci_autorizaciones extends SIAN_sg_ci
 		$this->cn()->set_cursor($seleccion);
 		$this->set_pantalla('pant_edicion');
 	}
-
-	function evt__cuadro__eliminar($seleccion)
-	{
-		$this->cn()->cargar($seleccion);
-		$this->cn()->eliminar();
-	}
+	
 	//-----------------------------------------------------------------------------------
 	//---- configuraciones------------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
