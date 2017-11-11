@@ -134,7 +134,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'SIAN_sg', --objeto_cuadro_proyecto
 	'2833', --objeto_cuadro
 	'1184', --objeto_cuadro_col
-	'id_tipo_de_contrato', --clave
+	'nombre_contrato', --clave
 	'1', --orden
 	'tipo de contrato', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
@@ -166,7 +166,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'2833', --objeto_cuadro
 	'1185', --objeto_cuadro_col
 	'fecha_inicio', --clave
-	'2', --orden
+	'3', --orden
 	'Fecha inicio', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
@@ -197,7 +197,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'2833', --objeto_cuadro
 	'1186', --objeto_cuadro_col
 	'fecha_vencimiento', --clave
-	'3', --orden
+	'4', --orden
 	'Fecha vencimiento', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
@@ -228,7 +228,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'2833', --objeto_cuadro
 	'1263', --objeto_cuadro_col
 	'nombre_propiedad', --clave
-	'4', --orden
+	'2', --orden
 	'Propiedad', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo
 	'4', --estilo
