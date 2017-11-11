@@ -14,8 +14,6 @@ class dao_datos_empresa
             		t_e.nombre_empresa,
             		t_e.cuit_empresa,
             		t_e.direccion,
-            		t_e.tel_cel,
-            		t_e.email,
             		t_e.tipo_iva,
             		t_e.logo
             		FROM

@@ -49,6 +49,54 @@ class ci_datos_empresa extends SIAN_sg_ci
 		}
 
 	}
+	//-----------------------------------------------------------------------------------
+	//---- form_ml_telefonos -------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+	function evt__form_ml_telefonos__modificacion($datos)
+	{
+		$this->s__datos['form_ml_telefonos'] = $datos;
+		$this->cn()->procesar_filas_telefonos($datos);
+	}
+
+	function conf__form_ml_telefonos(SIAN_sg_ei_formulario_ml $form_ml)
+	{
+		if (isset($this->s__datos['form_ml_telefonos'])) {
+			$form_ml->set_datos($this->s__datos['form_ml_telefonos']);
+		} else {
+			if ($this->cn()->hay_cursor()) {
+				$datos = $this->cn()->get_telefonos();
+				$this->s__datos['form_ml_telefonos'] = $datos;
+				$form_ml->set_datos($datos);
+			}
+		}
+				// $datos = $this->cn()->get_telefonos();
+				// $form_ml->set_datos($datos);
+	}
+
+//-----------------------------------------------------------------------------------
+//---- form_ml_correos -------------------------------------------------------------
+//-----------------------------------------------------------------------------------
+	function evt__form_ml_correos__modificacion($datos)
+	{
+		$this->s__datos['form_ml_correos'] = $datos;
+		$this->cn()->procesar_filas_correos($datos);
+	}
+
+	function conf__form_ml_correos(SIAN_sg_ei_formulario_ml $form_ml)
+	{
+		if (isset($this->s__datos['form_ml_correos'])) {
+			$form_ml->set_datos($this->s__datos['form_ml_correos']);
+		} else {
+			if ($this->cn()->hay_cursor()) {
+				$datos = $this->cn()->get_correos();
+				$this->s__datos['form_ml_correos'] = $datos;
+				$form_ml->set_datos($datos);
+			}
+		}
+		// $datos = $this->cn()->get_correos();
+		// $form_ml->set_datos($datos);
+	}
+
 	//---- EVENTOS CI -------------------------------------------------------------------
 
 	function evt__agregar()

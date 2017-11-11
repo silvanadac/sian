@@ -301,14 +301,14 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'SIAN_sg', --proyecto
 	'1362', --pantalla
 	'2897', --objeto_ci
-	'0', --orden
+	'1', --orden
 	'1684'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'SIAN_sg', --proyecto
 	'1362', --pantalla
 	'2897', --objeto_ci
-	'1', --orden
+	'0', --orden
 	'1685'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (

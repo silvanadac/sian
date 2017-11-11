@@ -40,7 +40,7 @@ class cn_datos_empresa extends SIAN_sg_cn
 
 	function cargar($seleccion)
 	{
-		$this->dep('dr_empresa')->tabla('dt_empresa')->cargar($seleccion);
+		$this->dep('dr_empresa')->cargar($seleccion);
 	}
 
 	function get_empresa()
@@ -85,41 +85,32 @@ class cn_datos_empresa extends SIAN_sg_cn
 		$this->dep('dr_empresa')->tabla('dt_empresa')->eliminar_todo();
 	}
 
-	// function set_logo($datos)
-	// {
-	// 	$this->dep('dr_empresa')->tabla('dt_empresa')->set($datos);
-	//
-	// 	if (is_array($datos['logo'])) {
-	//
-	// 		$temp_archivo = $datos['logo']['tmp_name'];
-	// 		$fp = fopen($temp_archivo, 'rb');
-	// 		$this->dep('dr_empresa')->tabla('dt_empresa')->set_blob('logo', $fp);
-	// 	}
-	// }
+	//-----------------------------------------------------------------------------------
+	//---- dt_telefonos_empresa ----------------------------------------------------------
+	//-----------------------------------------------------------------------------------
 
-	// function get_empresa_logo()
-	// {
-	// 	$fp_imagen = $this->dep('dr_empresa')->tabla('dt_empresa')->get_blob('logo');
-	//
-	// 	$datos = $this->dep('dr_empresa')->tabla('dt_empresa')->get();
-	//
-	// 	if (isset($fp_imagen)) {
-	// 		$temp_nombre = 'logo' . $datos['cuit_empresa'];
-	//
-	// 		$temp_archivo = toba::proyecto()->get_www_temp($temp_nombre);
-	//
-	// 		$temp_imagen = fopen($temp_archivo['path'], 'w');
-	// 		stream_copy_to_stream($fp_imagen, $temp_imagen);
-	// 		fclose($temp_imagen);
-	// 		$tamanio_imagen = round(filesize($temp_archivo['path']) / 1024);
-	// 		$datos['logo_vista'] = "<img src = '{$temp_archivo['url']}' alt=\"Imagen\" WIDTH=180 HEIGHT=150 >";
-	// 		$datos['logo'] = 'Tamaño foto actual: '.$tamanio_imagen.' KB';
-	// 	} else {
-	// 		$datos['logo'] = null;
-	// 	}
-	//
-	// 	return $datos;
-	// }
+	function procesar_filas_telefonos($datos)
+	{
+		$this->dep('dr_empresa')->tabla('dt_telefonos_empresa')->procesar_filas($datos);
+	}
+	function get_telefonos()
+	{
+		$datos = $this->dep('dr_empresa')->tabla('dt_telefonos_empresa')->get_filas();
+		return $datos;
+	}
+	//-----------------------------------------------------------------------------------
+	//---- dt_correos_empresa ----------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function procesar_filas_correos($datos)
+	{
+		$this->dep('dr_empresa')->tabla('dt_correos_empresa')->procesar_filas($datos);
+	}
+	function get_correos()
+	{
+		$datos = $this->dep('dr_empresa')->tabla('dt_correos_empresa')->get_filas();
+		return $datos;
+	}
 
 }
 ?>
