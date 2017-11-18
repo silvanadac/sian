@@ -196,7 +196,7 @@ INSERT INTO apex_objeto_ei_cuadro_columna (objeto_cuadro_proyecto, objeto_cuadro
 	'SIAN_sg', --objeto_cuadro_proyecto
 	'2886', --objeto_cuadro
 	'1234', --objeto_cuadro_col
-	'tipo_iva', --clave
+	'nombre_iva', --clave
 	'4', --orden
 	'Tipo de iva', --titulo
 	'ei-cuadro-col-tit', --estilo_titulo

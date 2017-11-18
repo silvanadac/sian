@@ -14,7 +14,7 @@ class dao_datos_empresa
             		t_e.nombre_empresa,
             		t_e.cuit_empresa,
             		t_e.direccion,
-            		t_e.tipo_iva,
+            		t_ti.nombre_iva,
             		t_e.logo,
             		t_ce.descripcion,
 			          t_te.numero ||', '||tdt.nombre_tel||', '||tet.nombre_linea telefono
@@ -22,6 +22,7 @@ class dao_datos_empresa
           			empresa t_e
                 LEFT JOIN telefonos_empresa t_te on t_te.cuit_empresa = t_e.cuit_empresa
           			LEFT JOIN correos_empresa t_ce on t_ce.cuit_empresa = t_e.cuit_empresa
+                LEFT JOIN tipo_de_iva t_ti on t_ti.id_iva = t_e.id_iva
           			LEFT JOIN tipo_telefono tdt on tdt.id_tipo_tel = t_te.id_tipo_tel
           			LEFT JOIN empresa_telefono tet on tet.id_emp_tel = t_te.id_emp_tel;
               $where_armado";
