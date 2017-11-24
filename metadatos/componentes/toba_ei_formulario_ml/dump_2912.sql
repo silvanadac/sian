@@ -106,7 +106,7 @@ INSERT INTO apex_objeto_ut_formulario (objeto_ut_formulario_proyecto, objeto_ut_
 	NULL, --expandir_descripcion
 	NULL, --campo_bl
 	'0', --scroll
-	'1', --filas
+	NULL, --filas
 	'0', --filas_agregar
 	'1', --filas_agregar_online
 	'0', --filas_agregar_abajo
@@ -119,7 +119,7 @@ INSERT INTO apex_objeto_ut_formulario (objeto_ut_formulario_proyecto, objeto_ut_
 	'0', --filas_numerar
 	NULL, --ev_seleccion
 	NULL, --alto
-	'EVENTOS', --analisis_cambios
+	'LINEA', --analisis_cambios
 	NULL, --no_imprimir_efs_sin_estado
 	NULL, --resaltar_efs_con_estado
 	NULL, --template

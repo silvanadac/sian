@@ -138,7 +138,7 @@ class cn_personas extends SIAN_sg_cn
 					$tamano = round(filesize($temp_archivo['path']) / 1024);
 					$html_imagen =
 					"<img width=\"24px\" src='{$temp_archivo['url']}' alt='' />";
-					$datos['imagen'] = '<a href="'.$temp_archivo['url'].'" target="_newtab">'.$html_imagen.' Tamaño de archivo actual: '.$tamano.' kb</a>';
+					$datos['imagen'] = '<a href="'.$temp_archivo['url'].'" target="_newtab">'.$html_imagen.' Tamaï¿½o de archivo actual: '.$tamano.' kb</a>';
 					$datos['imagen'.'?html'] = $html_imagen;
 				  $datos['imagen'.'?url'] = $temp_archivo['url'];
 				} else {

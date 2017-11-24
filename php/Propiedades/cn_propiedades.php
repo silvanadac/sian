@@ -66,12 +66,12 @@ class cn_propiedades extends SIAN_sg_cn
 			$temp_imagen = fopen($temp_archivo['path'], 'w');
 			stream_copy_to_stream($fp_imagen, $temp_imagen);
 			fclose($temp_imagen);
-			$tamaño = round(filesize($temp_archivo['path']) / 1024);
+			$tamaï¿½o = round(filesize($temp_archivo['path']) / 1024);
 
 			$datos['imagen_vista'] = "<img src='{$temp_archivo['url']}' alt=''>";
 
 			// $datos['imagen_vista'] = "<img src = '{$temp_archivo['url']}' alt=\"Imagen\" WIDTH=180 HEIGHT=150 >";
-			$datos['imagen'] = 'Tamaño foto actual: '.$tamaño.' KB';
+			$datos['imagen'] = 'Tamaï¿½o foto actual: '.$tamaï¿½o.' KB';
 		} else {
 			$datos['imagen'] = null;
 		}
@@ -117,6 +117,20 @@ class cn_propiedades extends SIAN_sg_cn
 		return $datos;
 	}
 	//-----------------------------------------------------------------------------------
+	//---- dt_datos_catastrales ----------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function procesar_filas_datos_catastrales($datos)
+	{
+		$this->dep('dr_propiedades')->tabla('dt_datos_catastrales')->procesar_filas($datos);
+	}
+
+	function get_datos_catastrales()
+	{
+		$datos = $this->dep('dr_propiedades')->tabla('dt_datos_catastrales')->get_filas();
+		return $datos;
+	}
+	//-----------------------------------------------------------------------------------
 	//---- dt_propiedad_x_restriccion ----------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
@@ -157,7 +171,7 @@ class cn_propiedades extends SIAN_sg_cn
 					$tamano = round(filesize($temp_archivo['path']) / 1024);
 					$html_imagen =
 					"<img width=\"24px\" src='{$temp_archivo['url']}' alt='' />";
-					$datos['imagen'] = '<a href="'.$temp_archivo['url'].'" target="_newtab">'.$html_imagen.' Tamaño de archivo actual: '.$tamano.' kb</a>';
+					$datos['imagen'] = '<a href="'.$temp_archivo['url'].'" target="_newtab">'.$html_imagen.' Tamaï¿½o de archivo actual: '.$tamano.' kb</a>';
 					$datos['imagen'.'?html'] = $html_imagen;
 					$datos['imagen'.'?url'] = $temp_archivo['url'];
 				} else {

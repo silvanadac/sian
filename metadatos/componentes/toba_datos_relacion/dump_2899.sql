@@ -65,6 +65,18 @@ INSERT INTO apex_objeto_datos_rel (proyecto, objeto, debug, clave, ap, punto_mon
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'SIAN_sg', --proyecto
+	'1724', --dep_id
+	'2899', --objeto_consumidor
+	'2905', --objeto_proveedor
+	'dt_datos_catastrales', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'7'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'SIAN_sg', --proyecto
 	'1694', --dep_id
 	'2899', --objeto_consumidor
 	'2904', --objeto_proveedor
@@ -222,6 +234,22 @@ INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador
 	NULL, --cascada
 	'5'  --orden
 );
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'81', --asoc_id
+	NULL, --identificador
+	'SIAN_sg', --padre_proyecto
+	'2900', --padre_objeto
+	'dt_propiedades', --padre_id
+	NULL, --padre_clave
+	'SIAN_sg', --hijo_proyecto
+	'2905', --hijo_objeto
+	'dt_datos_catastrales', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'6'  --orden
+);
 --- FIN Grupo de desarrollo 0
 
 ------------------------------------------------------------
@@ -271,4 +299,13 @@ INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_obje
 	'1314', --padre_clave
 	'2895', --hijo_objeto
 	'1313'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'SIAN_sg', --proyecto
+	'2899', --objeto
+	'81', --asoc_id
+	'2900', --padre_objeto
+	'1314', --padre_clave
+	'2905', --hijo_objeto
+	'1340'  --hijo_clave
 );

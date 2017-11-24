@@ -62,24 +62,28 @@ class abm_propiedades extends SIAN_sg_ci
 
 	function conf__form_ml_domicilio_x_propiedad(SIAN_sg_ei_formulario_ml $form_ml)
 	{
-		$datos=[''];
-
-		if (isset($this->s__datos['form_ml_domicilio_x_propiedad'])) {
-			$datos = $this->s__datos['form_ml_domicilio_x_propiedad'];
+			$datos = $this->cn()->get_domicilio();
+			if($datos){
+				$form_ml->set_datos($datos);
+			} else{
+				$form_ml->set_registro_nuevo();
 			}
 
-		if(!$datos){
-			if ($this->cn()->hay_cursor()) {
-				$datos = $this->cn()->get_domicilio();
-				$this->s__datos['form_ml_domicilio_x_propiedad'] = $datos;
-			}
-		}
-
-
-	$form_ml->set_datos($datos);
 	}
-		// $datos = $this->cn()->get_domicilio();
-		// $form_ml->set_datos($datos);
+//-----------------------------------------------------------------------------------
+//---- form_ml_datos_catastrales -------------------------------------------------------------------
+//-----------------------------------------------------------------------------------
+	function evt__form_ml_datos_catastrales_modificacion($datos)
+	{
+		$this->s__datos['form_ml_datos_catastrales'] = $datos;
+	}
+
+	function conf__form_ml_datos_catastrales(SIAN_sg_ei_formulario_ml $form_ml)
+	{
+		$datos = $this->cn()->get_datos_catastrales();
+		$form_ml->set_datos($datos);
+	}
+
 //-----------------------------------------------------------------------------------
 //---- form_ml_restricciones -------------------------------------------------------------
 //-----------------------------------------------------------------------------------
@@ -143,6 +147,9 @@ class abm_propiedades extends SIAN_sg_ci
       }
 		if (isset ($this->s__datos['form_ml_domicilio_x_propiedad'])){
 		    $this->cn()->procesar_filas_domicilio($this->s__datos['form_ml_domicilio_x_propiedad']);
+	    }
+		if (isset($this->s__datos['form_ml_datos_catastrales'])) {
+	      $this->cn()->procesar_filas_datos_catastrales($this->s__datos['form_ml_datos_catastrales']);
 	    }
 		if (isset ($this->s__datos['form_ml_restricciones'])){
 		    $this->cn()->procesar_filas_restricciones($this->s__datos['form_ml_restricciones']);
