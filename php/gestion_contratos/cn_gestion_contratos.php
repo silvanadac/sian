@@ -67,13 +67,26 @@ class cn_gestion_contratos extends SIAN_sg_cn
   //---- dt_detalle_contrato ----------------------------------------------------------
   //-----------------------------------------------------------------------------------
 
-  function procesar_filas_detalle_contrato($datos)
+  function procesar_filas_detalle($datos)
   {
     $this->dep('dr_gestion_contratos')->tabla('dt_detalle_contrato')->procesar_filas($datos);
   }
-  function get_detalle_contrato()
+  function get_detalle()
   {
     $datos = $this->dep('dr_gestion_contratos')->tabla('dt_detalle_contrato')->get_filas();
+    return $datos;
+  }
+	//-----------------------------------------------------------------------------------
+  //---- dt_cuotas ----------------------------------------------------------
+  //-----------------------------------------------------------------------------------
+
+  function procesar_filas_cuotas($datos)
+  {
+    $this->dep('dr_gestion_contratos')->tabla('dt_cuotas')->procesar_filas($datos);
+  }
+  function get_cuotas()
+  {
+    $datos = $this->dep('dr_gestion_contratos')->tabla('dt_cuotas')->get_filas();
     return $datos;
   }
 }
