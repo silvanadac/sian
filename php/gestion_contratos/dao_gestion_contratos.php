@@ -41,7 +41,7 @@ class dao_gestion_contratos
     if (count($resultado) > 0 ){
       return $resultado[0]['entidad'];
     } else {
-      return 'Fallï¿½, intente nuevamente';
+      return 'Falló, intente nuevamente';
     }
   }
 
@@ -76,5 +76,6 @@ class dao_gestion_contratos
 
     return consultar_fuente($sql)[0]['vigenciameses'];
   }
+  
 }
 ?>

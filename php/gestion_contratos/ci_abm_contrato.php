@@ -59,8 +59,9 @@ class ci_abm_contrato extends SIAN_sg_ci
 
 	function conf__form_ml_detalle(SIAN_sg_ei_formulario_ml $form_ml)
 	{
-				$datos = $this->cn()->get_detalle();
-				$form_ml->set_datos($datos);
+		$datos = $this->cn()->get_detalle();
+		$form_ml->set_datos($datos);
+		$form_ml->set_tipo_de_contrato($this->s__datos['form']['id_tipo_de_contrato']);
 	}
 	//-----------------------------------------------------------------------------------
 	//---- form_ml_cuotas -------------------------------------------------------------
