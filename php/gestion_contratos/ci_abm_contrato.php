@@ -83,7 +83,6 @@ class ci_abm_contrato extends SIAN_sg_ci
 				$array_cuotas = [];
 				$datos = $this->cn()->get_cuotas();
 				$datos_form = $this->s__datos['form'];
-				ei_arbol($datos_form);
 				$cant_meses = dao_gestion_contratos::get_cantidad_meses($datos_form['id_tipo_de_contrato']);
 				$finicio = strtotime(str_replace('-', '/',$datos_form['fecha_inicio']));
 				$mes_inicio = getdate($finicio)['mon']-1;

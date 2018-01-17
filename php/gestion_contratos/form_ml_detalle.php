@@ -16,7 +16,7 @@ class form_ml_detalle extends SIAN_sg_ei_formulario_ml
     $vigenciameses = $this->s__datos['vigenciameses'];
 
     $jsAuxiliares = "
-      
+
       {$this->objeto_js}.valida_cuota_b = function()
       {
         validado = true;
@@ -177,6 +177,13 @@ class form_ml_detalle extends SIAN_sg_ei_formulario_ml
 
 		{$this->objeto_js}.evt__importe__procesar = function(es_inicial, fila)
 		{
+        valoringimp = this.ef('importe').ir_a_fila(fila).get_estado();
+        valoringpor = this.ef('porcentaje').ir_a_fila(fila).get_estado();
+        if (es_inicial){
+          cantdiv = valoringimp/100;
+          valorpor = cantdiv*valoringpor;
+          proximp = valoringimp + valorpor;
+        }
 		}
 
 		{$this->objeto_js}.evt__porcentaje__procesar = function(es_inicial, fila)
