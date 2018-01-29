@@ -121,8 +121,8 @@ INSERT INTO apex_objeto_ut_formulario (objeto_ut_formulario_proyecto, objeto_ut_
 	NULL, --alto
 	NULL, --analisis_cambios
 	'0', --no_imprimir_efs_sin_estado
-	'0', --resaltar_efs_con_estado
-	NULL, --template
+	'1', --resaltar_efs_con_estado
+	'<p><span style="font-size:16px;"><strong>[ef id=id_autorizacion][ef id=id_tipo_autorizacion][ef id=cuit_empresa][ef id=representante][ef id=id_propiedad][ef id=id_persona][ef id=id_rol][ef id=porcentaje][ef id=fecha_ini][ef id=fecha_baja]</strong></span></p>', --template
 	NULL  --template_impresion
 );
 
@@ -144,15 +144,15 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'Id autorizacion', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
-	NULL, --colapsado
-	NULL, --desactivado
+	'0', --colapsado
+	'0', --desactivado
 	NULL, --estilo
 	NULL, --total
 	NULL, --inicializacion
-	NULL, --permitir_html
-	NULL, --deshabilitar_rest_func
+	'0', --permitir_html
+	'0', --deshabilitar_rest_func
 	NULL, --estado_defecto
-	NULL, --solo_lectura
+	'0', --solo_lectura
 	'0', --solo_lectura_modificacion
 	NULL, --carga_metodo
 	NULL, --carga_clase
@@ -224,16 +224,16 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'Fecha de inicio', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
-	NULL, --colapsado
-	NULL, --desactivado
+	'0', --colapsado
+	'0', --desactivado
 	NULL, --estilo
 	NULL, --total
 	NULL, --inicializacion
-	NULL, --permitir_html
-	NULL, --deshabilitar_rest_func
+	'0', --permitir_html
+	'0', --deshabilitar_rest_func
 	NULL, --estado_defecto
-	NULL, --solo_lectura
-	'0', --solo_lectura_modificacion
+	'0', --solo_lectura
+	'1', --solo_lectura_modificacion
 	NULL, --carga_metodo
 	NULL, --carga_clase
 	NULL, --carga_include
@@ -295,24 +295,24 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'5995', --objeto_ei_formulario_fila
 	'2918', --objeto_ei_formulario
 	'SIAN_sg', --objeto_ei_formulario_proyecto
-	'fecha_vencimiento', --identificador
+	'fecha_baja', --identificador
 	'ef_editable_fecha', --elemento_formulario
-	'fecha_vencimiento', --columnas
-	'1', --obligatorio
+	'fecha_baja', --columnas
+	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
 	'10', --orden
-	'Fecha de vencimiento', --etiqueta
+	'Fecha de baja', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
-	NULL, --colapsado
-	NULL, --desactivado
+	'0', --colapsado
+	'0', --desactivado
 	NULL, --estilo
 	NULL, --total
 	NULL, --inicializacion
-	NULL, --permitir_html
-	NULL, --deshabilitar_rest_func
+	'0', --permitir_html
+	'0', --deshabilitar_rest_func
 	NULL, --estado_defecto
-	NULL, --solo_lectura
+	'0', --solo_lectura
 	'0', --solo_lectura_modificacion
 	NULL, --carga_metodo
 	NULL, --carga_clase
@@ -393,7 +393,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'0', --deshabilitar_rest_func
 	NULL, --estado_defecto
 	'0', --solo_lectura
-	'0', --solo_lectura_modificacion
+	'1', --solo_lectura_modificacion
 	'get_descripciones', --carga_metodo
 	NULL, --carga_clase
 	NULL, --carga_include
@@ -471,15 +471,16 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --inicializacion
 	'0', --permitir_html
 	'0', --deshabilitar_rest_func
-	'LOCADOR', --estado_defecto
+	NULL, --estado_defecto
 	'0', --solo_lectura
-	'0', --solo_lectura_modificacion
-	'get_descripciones', --carga_metodo
+	'1', --solo_lectura_modificacion
+	NULL, --carga_metodo
 	NULL, --carga_clase
 	NULL, --carga_include
-	'2838', --carga_dt
+	NULL, --carga_dt
 	NULL, --carga_consulta_php
-	NULL, --carga_sql
+	'select id_rol, nombre_rol from rol
+where id_rol=1', --carga_sql
 	'SIAN_sg', --carga_fuente
 	NULL, --carga_lista
 	'id_rol', --carga_col_clave
@@ -553,7 +554,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'0', --deshabilitar_rest_func
 	NULL, --estado_defecto
 	'0', --solo_lectura
-	'0', --solo_lectura_modificacion
+	'1', --solo_lectura_modificacion
 	NULL, --carga_metodo
 	NULL, --carga_clase
 	NULL, --carga_include
@@ -713,7 +714,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'0', --deshabilitar_rest_func
 	NULL, --estado_defecto
 	'0', --solo_lectura
-	'0', --solo_lectura_modificacion
+	'1', --solo_lectura_modificacion
 	NULL, --carga_metodo
 	NULL, --carga_clase
 	NULL, --carga_include

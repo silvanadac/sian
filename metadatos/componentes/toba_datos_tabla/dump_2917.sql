@@ -101,13 +101,13 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'SIAN_sg', --objeto_proyecto
 	'2917', --objeto
 	'1345', --col_id
-	'fecha_vencimiento', --columna
+	'fecha_baja', --columna
 	'F', --tipo
 	'0', --pk
 	'', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
-	'1', --no_nulo_db
+	'0', --no_nulo_db
 	'0', --externa
 	'autorizaciones'  --tabla
 );

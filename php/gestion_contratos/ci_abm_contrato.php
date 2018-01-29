@@ -102,7 +102,7 @@ class ci_abm_contrato extends SIAN_sg_ci
 														,'monto_alquiler'=> 0
 														,'imas_conexion_n'=> 0
 														,'emsa_conexion_n'=> 0
-														,'fecha_pago'=> $fvencimiento];
+														,'fecha_de_vencimiento'=> $fvencimiento];
 					}
 					$form_ml->set_datos_defecto($array_cuotas);
 		}

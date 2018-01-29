@@ -17,8 +17,8 @@ class dao_autorizaciones
               t_e.nombre_empresa,
               t_r.nombre_rol,
               coalesce(t_p.razon_social, t_p.apellidos||', '||t_p.nombre) entidad,
-              fecha_ini,
-              fecha_vencimiento
+              t_a.fecha_ini,
+              t_a.fecha_baja
               from autorizaciones t_a
               inner join tipo_autorizacion t_tp on t_tp.id_tipo_autorizacion = t_a.id_tipo_autorizacion
               inner join personas t_p on t_p.id_persona = t_a.id_persona
@@ -31,4 +31,5 @@ class dao_autorizaciones
 
   }
 }
+
 ?>

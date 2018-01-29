@@ -16,8 +16,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	'toba', --clase_proyecto
 	'toba_cn', --clase
 	'23', --punto_montaje
-	'cn_autorizaciones', --subclase
-	'gestion_autorizaciones/cn_autorizaciones.php', --subclase_archivo
+	'cn_gestion_autorizaciones', --subclase
+	'gestion_autorizaciones/cn_gestion_autorizaciones.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'cn_gestion_autorizaciones', --nombre

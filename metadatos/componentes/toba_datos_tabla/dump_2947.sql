@@ -75,7 +75,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'1374', --col_id
 	'n_de_cuota', --columna
 	'E', --tipo
-	'1', --pk
+	'0', --pk
 	'', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
@@ -87,7 +87,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'SIAN_sg', --objeto_proyecto
 	'2947', --objeto
 	'1375', --col_id
-	'fecha_de_pago', --columna
+	'fecha_de_vencimiento', --columna
 	'F', --tipo
 	'0', --pk
 	'', --secuencia
@@ -142,20 +142,6 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'SIAN_sg', --objeto_proyecto
 	'2947', --objeto
-	'1379', --col_id
-	'pagado', --columna
-	'L', --tipo
-	'0', --pk
-	'', --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'1', --no_nulo_db
-	'0', --externa
-	'cuotas'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'SIAN_sg', --objeto_proyecto
-	'2947', --objeto
 	'1380', --col_id
 	'id_periodo', --columna
 	'E', --tipo
@@ -180,5 +166,19 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'1', --no_nulo_db
 	'0', --externa
 	'cuotas'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'SIAN_sg', --objeto_proyecto
+	'2947', --objeto
+	'1387', --col_id
+	'id_cuota', --columna
+	'E', --tipo
+	'1', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'1', --no_nulo_db
+	'0', --externa
+	NULL  --tabla
 );
 --- FIN Grupo de desarrollo 0
